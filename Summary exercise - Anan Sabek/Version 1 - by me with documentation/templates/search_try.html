@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+        <h1>This page for results of searching</h1>
+
+        <a href="/"><button>Go to home page</button></a>
+         <form action="/search" method="post">
+
+            <ul>
+            {% for book in check_search %}
+            <li>
+                <strong>Title:</strong> {{ book['Title'] }},
+                <strong>Author:</strong> {{ book['Author'] }},
+                {% if book['Year'] | int < 0 %}
+                    <strong>Year:</strong> {{ book['Year'] | int | abs }} B.C.,
+                {% else %}
+                    <strong>Year:</strong> {{ book['Year'] }},
+                {% endif %}
+                <strong>Genre:</strong> {{ book['Genre'] }}
+            </li>
+                <br><br>
+             {% endfor %}
+    </ul>
+
+</body>
+</html>

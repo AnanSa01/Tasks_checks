@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+        <h1>This page for editing books</h1>
+
+    <form action="/editingbooks/{{ book['Title'] }}" method="post">
+
+        <input type="text" name="title" value="{{ book['Title'] }}">Title:<br>
+        <input type="text" name="author" value="{{ book['Author'] }}">Author:<br>
+        <input type="number" name="year" value="{{ book['Year'] }}">Year:<br>
+        <input type="text" name="genre" value="{{ book['Genre'] }}">Genre:<br>
+
+        <input type="submit" value="Save Changes">
+    </form>
+
+</body>
+</html>

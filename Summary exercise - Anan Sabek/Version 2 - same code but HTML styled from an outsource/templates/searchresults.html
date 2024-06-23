@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Anan Library - Search Results</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0; /* Light gray */
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        header {
+            background-color: #4CAF50; /* Green */
+            padding: 20px;
+            color: white;
+        }
+        main {
+            padding: 20px;
+            text-align: left;
+        }
+        .book {
+            background-color: #fff;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Light shadow */
+        }
+        .btn {
+            background-color: #4CAF50; /* Green */
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            margin: 10px; /* Add margin for spacing */
+        }
+        .btn:hover {
+            background-color: #45a049; /* Darker green */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Anan Library - Search Results</h1>
+    </header>
+    <main>
+        <a href="/" class="btn">Go to Home Page</a>  <form action="/search" method="post">
+            <ul>
+                {% for book in check_search %}
+                    <li class="book">
+                        <strong>Title:</strong> {{ book['Title'] }}<br>
+                        <strong>Author:</strong> {{ book['Author'] }}<br>
+                        <strong>Year:</strong> {% if book['Year'] | int < 0 %}{{ book['Year'] | int | abs }} B.C.{% else %}{{ book['Year'] }}{% endif %}<br>
+                        <strong>Genre:</strong> {{ book['Genre'] }}
+                    </li>
+                    <br><br>
+                {% endfor %}
+            </ul>
+        </form>
+    </main>
+</body>
+</html>

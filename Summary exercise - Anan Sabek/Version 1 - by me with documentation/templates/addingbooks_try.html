@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+        <h1>This page for adding books</h1>
+        <p>Make sure to complete all details in all 4 fields.<br>
+        Because if even one of them is missing,<br>
+            the book will NOT be added to the library! </p>
+
+         <form action="/addingbooks" method="post">
+
+            <input type="text" name="title"> - Title<br>
+            <input type="text" name="author"> - Author<br>
+            <input type="number" name="year"> - Year<br>
+            <input type="text" name="genre"> - Genre<br>
+
+            <input type="submit" value="Add New Book"><br><br>
+
+             <a href="/">Go back to home page</a><br>
+             <a href="/library">Go to library</a><br>
+
+        </form>
+
+
+</body>
+</html>
