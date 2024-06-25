@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Anan Library - Edit Books</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0; /* Light gray */
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        header {
+            background-color: #4CAF50; /* Green */
+            padding: 20px;
+            color: white;
+        }
+        main {
+            padding: 20px;
+            text-align: left;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .btn {
+            background-color: #4CAF50; /* Green */
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .btn:hover {
+            background-color: #45a049; /* Darker green */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Anan Library - Edit Book Details</h1>
+    </header>
+    <main>
+        <form action="/editingbooks/{{ book['Title'] }}" method="post">
+            <div class="form-group">
+                <label for="title">Title:</label><br>
+                <input type="text" id="title" name="title" value="{{ book['Title'] }}">
+            </div>
+            <div class="form-group">
+                <label for="author">Author:</label><br>
+                <input type="text" id="author" name="author" value="{{ book['Author'] }}">
+            </div>
+            <div class="form-group">
+                <label for="year">Year:</label><br>
+                <input type="number" id="year" name="year" value="{{ book['Year'] }}">
+            </div>
+            <div class="form-group">
+                <label for="genre">Genre:</label><br>
+                <input type="text" id="genre" name="genre" value="{{ book['Genre'] }}">
+            </div>
+            <input type="submit" value="Save Changes" class="btn">
+        </form>
+    </main>
+</body>
+</html>

@@ -1,0 +1,98 @@
+[
+   {
+      "Author": "J.R.R. Tolkien",
+      "Genre": "Adventure",
+      "Title": "Lord Of The Rings",
+      "Year": "1952"
+   },
+   {
+      "Author": "J.K. Rowling",
+      "Genre": "Fantasy",
+      "Title": "Harry Potter",
+      "Year": "1997"
+   },
+   {
+      "Author": "George Orwell",
+      "Genre": "Political",
+      "Title": "Animal Farm",
+      "Year": "1945"
+   },
+   {
+      "Author": "George R. R. Martin",
+      "Genre": "Epic",
+      "Title": "A Game Of Thrones",
+      "Year": "1996"
+   },
+   {
+      "Author": "Ernest Cline",
+      "Genre": "Science Fiction",
+      "Title": "Ready Player One",
+      "Year": "2011"
+   },
+   {
+      "Author": "Paulo Coelho",
+      "Genre": "Adventure",
+      "Title": "The Alchemist",
+      "Year": "1988"
+   },
+   {
+      "Author": "George Orwell",
+      "Genre": "Political",
+      "Title": "1984",
+      "Year": "1949"
+   },
+   {
+      "Author": "Tom Clancy",
+      "Genre": "Action",
+      "Title": "The Hunt For Red October",
+      "Year": "1984"
+   },
+   {
+      "Author": "Sun Tzu",
+      "Genre": "Military Art",
+      "Title": "The Art Of War",
+      "Year": "-500"
+   },
+   {
+      "Author": "Robert Harris",
+      "Genre": "Thriller",
+      "Title": "An Officer And A Spy",
+      "Year": "2013"
+   },
+   {
+      "Author": "Stephen King",
+      "Genre": "Thriller",
+      "Title": "Mr Mercedes",
+      "Year": "2014"
+   },
+   {
+      "Author": "J.R.R. Tolkien",
+      "Genre": "Epic",
+      "Title": "The Children Of Hurin",
+      "Year": "2007"
+   },
+   {
+      "Author": "J.R.R. Tolkien",
+      "Genre": "Adventure",
+      "Title": "The Hobbit",
+      "Year": "1937"
+   },
+   {
+      "Author": "Andrzej Sapkowski",
+      "Genre": "Fantasy",
+      "Title": "The Last Wish",
+      "Year": "1993"
+   },
+   {
+      "Author": "\u0639\u0646\u0627\u0646",
+      "Genre": "\u0645\u0635\u0627\u0631\u0639\u0629",
+      "Title": "!!!!\u064a\u0633\u0628\u0628",
+      "Year": "211111111111"
+   },
+   {
+      "Author": "Plato",
+      "Genre": "Philosophy",
+      "Title": "Republic",
+      "Year": "-350"
+   }
+]
