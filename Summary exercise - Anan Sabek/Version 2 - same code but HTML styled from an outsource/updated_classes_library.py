@@ -1,6 +1,8 @@
 from flask import json
 
 
+# ADD Class of book , and edit the year that it won't be more than the current year (2024)
+# In genre you can't type numbers and (!@#@!$) , it must be charachters only.
 class UpdatedMyLibrary:
     @staticmethod
     def load_books():
