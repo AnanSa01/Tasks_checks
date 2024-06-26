@@ -1,64 +1,59 @@
 import unittest
 
-from unitttest.math_function import is_even, sum_function, is_odd, div_function, sub_function, mul_function
+from math_function import is_even, is_odd
 
 
 class TestMatchFunction(unittest.TestCase):
 
+# ----------------------------------------------------------
+    # checks for even function
     def test_is_even_true(self):
-        num = 4
+        list_num = [-4, 0, 2]
         # change arguments here
-        result = is_even(num)
-        self.assertTrue(result)
+        for num in list_num:
+            self.assertTrue(is_even(num))
 
     def test_is_even_false(self):
-        num = 3
+        list_num = [-7, 1, 13]
         # change arguments here
-        result = is_even(num)
-        self.assertFalse(result)
+        for num in list_num:
+            self.assertFalse(is_even(num))
+
+    def test_is_even_float(self):
+        list_num_float = [-8.9, 0.6, 16.4]
+        # change arguments here
+        for num in list_num_float:
+            self.assertFalse(is_even(num))
+
+    def test_is_even_str(self):
+        list_str = ["aaa", "123", "@#$"]
+        for check in list_str:
+            with self.assertRaises(TypeError):
+                is_even(check)
+# ----------------------------------------------------------
+    # checks for odd function
 
     def test_is_odd_true(self):
-        num = 7
+        list_num = [-7, 1, 13]
         # change arguments here
-        result = is_odd(num)
-        self.assertTrue(result)
+        for num in list_num:
+            self.assertTrue(is_odd(num))
 
     def test_is_odd_false(self):
-        num = 8
+        list_num = [-4, 0, 2]
         # change arguments here
-        result = is_odd(num)
-        self.assertFalse(result)
+        for num in list_num:
+            self.assertFalse(is_odd(num))
 
-    def test_sum_true(self):
-        num1 = 3
-        num2 = 6
+    def test_is_odd_float(self):
+        list_num_float = [-8.9, 0.6, 16.4]
         # change arguments here
-        self.assertEqual(num1+num2, sum_function(num1,num2),"The result is false")
+        for num in list_num_float:
+            self.assertFalse(is_odd(num))
 
-    def test_sub_true(self):
-        num1 = 20
-        num2 = 12
-        # change arguments here
-        self.assertEqual(num1 - num2, sub_function(num1, num2), "The result is false")
-
-    def test_mul_true(self):
-        num1 = 7
-        num2 = 5
-        # change arguments here
-        self.assertEqual(num1 * num2, mul_function(num1, num2), "The result is false")
-
-    def test_div_true(self):
-        num1 = 9
-        num2 = 0
-        # change arguments here
-        try:
-            self.assertEqual(num1 / num2, div_function(num1, num2), "The result is false")
-
-        except ZeroDivisionError:
-            print("\nnum2 can't be zero")
-
-
-    def test_modulo_true(self):
-        num1 = 5
-        # change arguments here.
-        self.assertEqual(0,num1,"The result is false")
+    def test_is_odd_str(self):
+        list_str = ["aaa", "123", "@#$"]
+        for check in list_str:
+            with self.assertRaises(TypeError):
+                is_odd(check)
+#.
