@@ -19,5 +19,5 @@ first_result = driver.find_element(By.CSS_SELECTOR, "h3")
 print(f"The result is: \n{first_result.text}")
 
 
-# infra
+# infrastructure
 driver.quit()
