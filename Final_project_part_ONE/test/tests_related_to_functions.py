@@ -32,7 +32,6 @@ class MyTestCase(unittest.TestCase):
         search_page.add_book_to_read_list()
         search_page.click_done_button_after_adding_to_list()
 
-
     def test_changing_order_in_my_books(self):
         self.home_page.click_on_my_books_button()
         my_books_page = MyBooksPage(self.driver)

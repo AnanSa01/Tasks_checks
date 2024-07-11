@@ -39,11 +39,9 @@ class MyBooksPage(BasePage):
 
     def choose_one_of_my_books_by_title(self, title_input):
         for title in self._my_books_titles:
-            print(title.text.lower())
             if title_input.lower() in title.text.lower():
-                print(title_input)
-                title.click()
-        print("this means we didnt find anything")
+                return title.text
+        print("Error! book not found in my books")
 
     def click_on_want_to_read_list(self):
         self._want_to_read_button.click()

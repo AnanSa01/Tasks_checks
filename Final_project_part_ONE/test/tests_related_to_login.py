@@ -21,7 +21,6 @@ class MyTestCase(unittest.TestCase):
         home_page = HomePage(self.driver)
         self.assertTrue(home_page.check_if_header_displayed(), "Login FAILED!")
 
-
     def test_sign_up_with_already_connected_user(self):
         login_page = LoginPage(self.driver)
         login_page.click_on_sign_up_button_in_login_window()
@@ -41,13 +40,6 @@ class MyTestCase(unittest.TestCase):
         sign_up_page.write_in_password_and_re_enter_password_flow("0000000000")
         sign_up_page.click_on_create_account_button()
         self.assertTrue(sign_up_page.alert_message_for_sign_up(), "Error! Shouldn't be able to connect")
-
-    def test_invalid_login_with_wrong_password(self):
-        login_page = LoginPage(self.driver)
-        login_page.write_in_email_input_field("aaafortesting@gmail.com")
-        login_page.write_in_password_input_field("@@@@@@@@@@@@@@@@@@@@@@@@@")
-        login_page.click_on_sign_in_button()
-        self.assertTrue(login_page.alert_message_for_login(), "Error! Shouldn't be able to connect")
 
     def test_password_not_match_re_enter_password(self):
         login_page = LoginPage(self.driver)

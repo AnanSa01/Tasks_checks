@@ -14,6 +14,8 @@ class SearchPage(BaseAppPage):
     OPTION_FOR_LISTS_BUTTON = '//button[@aria-label="Tap to choose a shelf for this book"]'
     ADD_TO_READ_LIST_BUTTON = '//button[@aria-label="Read"]'
     DONE_BUTTON_IN_ADDING_TO_LIST = '//button//span[contains(text(), "Done")]'
+    CURRENT_RATING = '//div[@class="BookRatingStars"]//span[@aria-label="Rating 5 out of 5"]'
+    CURRENT_RATING = f'//div[@class="Sticky"]//div[@class="BookActions"]//div[@class="BookRatingStars"]//span'
 
     # ADD_TAGS_INPUT = '//div[@class="FormControl FormControl"]//input[@data-testid="input"]'
     # ADD_TAGS_BUTTON = '//button[@class="Button Button--primary Button--medium"]'
@@ -35,12 +37,16 @@ class SearchPage(BaseAppPage):
         self._rating_book = self._driver.find_elements(By.XPATH, self.RATING_BOOK)
         self._rating_book[rating_input - 1].click()
 
+    def check_current_rating_of_the_book_open(self):
+        self._current_rating = self._driver.find_elements(By.XPATH, self.CURRENT_RATING)
+        attribute_value = self._current_rating[0].get_attribute("aria-label").split()
+        return int(attribute_value[1])
+
+
     def change_rating_of_the_book(self):
-        self._expected_result = self._driver.find_elements(By.XPATH, self.EXPECTED_RESULT)
-
         self._rating_book = self._driver.find_elements(By.XPATH, self.RATING_BOOK)
-
-        if self._expected_result:
+        current_rating = self.check_current_rating_of_the_book_open()
+        if current_rating == 5:
             self._rating_book[3].click()
         else:
             self._rating_book[4].click()
@@ -64,7 +70,7 @@ class SearchPage(BaseAppPage):
         self._done_button_after_adding_to_list.click()
 
     def search_for_author_name(self):
-        print(self._author_name[0].text)
+        return self._author_name[0].text
 
     def add_multiple_books_at_once(self, how_many):
         self._add_to_read_list_from_search_results = self._driver.find_elements(By.XPATH,self.ADD_TO_READ_LIST_FROM_SEARCH_RESULTS)
