@@ -35,7 +35,6 @@ class LoginPage(BasePage):
         self._sign_up_button.click()
 
     def valid_login_flow(self):
-        time.sleep(1)
         self.write_in_email_input_field("aaafortesting@gmail.com")
         self.write_in_password_input_field("aaafortesting123456789")
         self.click_on_sign_in_button()

@@ -1,6 +1,4 @@
 from selenium import webdriver
-
-
 class BasePage:
 
     # Always get driver
@@ -8,7 +6,5 @@ class BasePage:
         self._driver = driver
 
     def refresh_page(self):
-        self._driver.refresh()
-
-    def back_func(self):
+        self._driver.reload()
         self._driver.back()
