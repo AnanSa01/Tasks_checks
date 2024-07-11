@@ -1,6 +1,6 @@
 import time
-
 from selenium.webdriver.common.by import By
+from selenium.common.exceptions import *
 
 from logic.base_app_page import BaseAppPage
 
@@ -12,9 +12,11 @@ class FriendsPage(BaseAppPage):
 
     def __init__(self, driver):
         super().__init__(driver)
-        self._find_friends_input = self._driver.find_element(By.XPATH, self.FIND_FRIENDS_INPUT)
-        self._search_members_button = self._driver.find_element(By.XPATH, self.SEARCH_MEMBERS_BUTTON)
-
+        try:
+            self._find_friends_input = self._driver.find_element(By.XPATH, self.FIND_FRIENDS_INPUT)
+            self._search_members_button = self._driver.find_element(By.XPATH, self.SEARCH_MEMBERS_BUTTON)
+        except NoSuchElementException:
+            print("Error in finding element in FriendsPage")
 
     def search_for_a_person_flow(self, person_input):
         self._find_friends_input.click()

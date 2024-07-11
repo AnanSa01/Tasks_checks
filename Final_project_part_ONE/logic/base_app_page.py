@@ -1,4 +1,5 @@
 from selenium.webdriver.common.by import By
+from selenium.common.exceptions import *
 
 from infra.base_page import BasePage
 
@@ -11,11 +12,13 @@ class BaseAppPage(BasePage):
 
     def __init__(self, driver):
         super().__init__(driver)
-        self._my_books_button = self._driver.find_element(By.XPATH, self.MY_BOOKS_BUTTON)
-        self._search_bar = self._driver.find_element(By.XPATH, self.SEARCH_BAR)
-        self._search_bar_button = self._driver.find_element(By.XPATH, self.SEARCH_BAR_BUTTON)
-        self._friend_button = self._driver.find_element(By.XPATH, self.FRIENDS_BUTTON)
-
+        try:
+            self._my_books_button = self._driver.find_element(By.XPATH, self.MY_BOOKS_BUTTON)
+            self._search_bar = self._driver.find_element(By.XPATH, self.SEARCH_BAR)
+            self._search_bar_button = self._driver.find_element(By.XPATH, self.SEARCH_BAR_BUTTON)
+            self._friend_button = self._driver.find_element(By.XPATH, self.FRIENDS_BUTTON)
+        except NoSuchElementException:
+            print("Error in finding element in BaseAppPage")
 
     def click_on_my_books_button(self):
         self._my_books_button.click()
