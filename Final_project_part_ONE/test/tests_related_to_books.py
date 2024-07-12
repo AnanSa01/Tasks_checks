@@ -38,7 +38,6 @@ class MyTestCase(unittest.TestCase):
         search_page = SearchPage(self.driver)
         search_page.first_result_in_search()
         search_page.rating_the_book(rating_of_the_book)
-        time.sleep(3)
         self.assertEqual(search_page.check_current_rating_of_the_book_open(), rating_of_the_book)
 
     def test_changing_rating_of_a_book(self):

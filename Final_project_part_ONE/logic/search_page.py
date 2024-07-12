@@ -76,6 +76,7 @@ class SearchPage(BaseAppPage):
         self._add_to_read_list_from_search_results = self._driver.find_elements(By.XPATH,self.ADD_TO_READ_LIST_FROM_SEARCH_RESULTS)
         for i in range(how_many):
             self._add_to_read_list_from_search_results[i].click()
+            time.sleep(2)
 
 
 

@@ -13,6 +13,8 @@ class MyBooksPage(BasePage):
     MY_BOOKS_TITLES = '//td[@class="field title"]//a'
     WANT_TO_READ_BUTTON = '//a[contains(text(), "Want to Read")]'
     REMOVE_BUTTONS_FROM_MY_BOOKS = '//img[@alt="Remove from my books"]'
+    EDIT_BOOK_SHELVES_BUTTON = '//div[@id="shelvesSection"]//div[@class="sectionHeader"]//a'
+    LIST_OF_SHELVES = '//table[@id="shelfTable"]//tr[@class="elementList"]//div//a[@class="displayShelfNameLnk"]'
 
     def __init__(self, driver):
         super().__init__(driver)
@@ -21,6 +23,7 @@ class MyBooksPage(BasePage):
             self._avg_rating_button = self._driver.find_element(By.XPATH, self.AVG_RATING_BUTTON)
             self._my_books_titles = self._driver.find_elements(By.XPATH, self.MY_BOOKS_TITLES)
             self._want_to_read_button = self._driver.find_element(By.XPATH, self.WANT_TO_READ_BUTTON)
+            self._edit_book_shelves_button = self._driver.find_element(By.XPATH, self.EDIT_BOOK_SHELVES_BUTTON)
         except NoSuchElementException:
             print("Error in finding element in MyBooksPage")
 
@@ -37,6 +40,10 @@ class MyBooksPage(BasePage):
     def change_order_in_my_books(self):
         self._avg_rating_button.click()
 
+    def return_first_book_of_the_list(self):
+        self._my_books_titles_dynamic = self._driver.find_elements(By.XPATH, self.MY_BOOKS_TITLES)
+        return self._my_books_titles_dynamic[0].text
+
     def choose_one_of_my_books_by_title(self, title_input):
         for title in self._my_books_titles:
             if title_input.lower() in title.text.lower():
@@ -45,6 +52,13 @@ class MyBooksPage(BasePage):
 
     def click_on_want_to_read_list(self):
         self._want_to_read_button.click()
+        
+    # def click_on_edit_book_shelves_button(self):
+    #     self._edit_book_shelves_button.click()
+
+    # def catch_all_lists_in_shelves(self):
+    #     self._list_of_shelves = self._driver.find_elements(By.XPATH, self.LIST_OF_SHELVES)
+    #     return self._list_of_shelves[3].text
 
     # def click_on_remove_button_in_my_books_chosen(self, remove_input):
     #     self._remove_buttons_from_my_books = self._driver.find_elements(By.XPATH, self.REMOVE_BUTTONS_FROM_MY_BOOKS)
