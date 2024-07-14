@@ -18,6 +18,6 @@ class HomePage(BaseAppPage):
         except NoSuchElementException:
             logging.error("Error in finding element in HomePage")
 
-        # this function to ensure that the header is displayed for login test.
+    # this function to ensure that the header is displayed for login test.
     def check_if_header_displayed(self):
         return self._header_is_displayed.is_displayed()

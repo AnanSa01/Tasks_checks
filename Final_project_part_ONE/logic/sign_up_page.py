@@ -26,38 +26,38 @@ class SignUpPage(BasePage):
         except NoSuchElementException:
             logging.error("Error in finding element in SignUpPage")
 
-        # this function is to write in "Your name" field in sign up.
+    # this function is to write in "Your name" field in sign up.
     def write_in_your_name_field(self, user_input):
         self._your_name_input.click()
         self._your_name_input.send_keys(user_input)
 
-        # this function is to write in "Your Email address" field in sign up.
+    # this function is to write in "Your Email address" field in sign up.
     def write_in_email_input(self, email_input):
         self._email_input.click()
         self._email_input.send_keys(email_input)
 
-        # this function is to write in "Your password" and "Re-enter password" fields in sign up.
+    # this function is to write in "Your password" and "Re-enter password" fields in sign up.
     def write_in_password_and_re_enter_password_flow(self, password_input):
         self._password_input.click()
         self._password_input.send_keys(password_input)
         self._re_enter_password_input.click()
         self._re_enter_password_input.send_keys(password_input)
 
-        # this function is JUST to write in "Your password" field in sign up.
+    # this function is JUST to write in "Your password" field in sign up.
     def write_in_just_password_input(self, password):
         self._password_input.click()
         self._password_input.send_keys(password)
 
-        # this function is JUST to write in "Re-enter password" field in sign up.
+    # this function is JUST to write in "Re-enter password" field in sign up.
     def write_in_just_re_enter_password_input(self, re_enter_password):
         self._re_enter_password_input.click()
         self._re_enter_password_input.send_keys(re_enter_password)
 
-        # this function is to press on create account button in sign up page.
+    # this function is to press on create account button in sign up page.
     def click_on_create_account_button(self):
         self._create_account_button.click()
 
-        # this function to check for alert message for invalid input in sign up and return it to the tests pages.
+    # this function to check for alert message for invalid input in sign up and return it to the tests pages.
     def alert_message_for_sign_up(self):
         logging.info("Attempting to find elements for sign up function")
         try:

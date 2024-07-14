@@ -27,25 +27,25 @@ class LoginPage(BasePage):
         except NoSuchElementException:
             logging.error("Error in finding element in LoginPage")
 
-        # this function is to write in Email input in login page.
+    # this function is to write in Email input in login page.
     def write_in_email_input_field(self, user_email_input):
         self._email_input_field.click()
         self._email_input_field.send_keys(user_email_input)
 
-        # this function is to write in password input in login page.
+    # this function is to write in password input in login page.
     def write_in_password_input_field(self, user_password_input):
         self._password_input_field.click()
         self._password_input_field.send_keys(user_password_input)
 
-        # this function is to click on login after filling the inputs.
+    # this function is to click on login after filling the inputs.
     def click_on_sign_in_button(self):
         self._sign_in_button.click()
 
-        # this function to move to sign up page from sign in window.
+    # this function to move to sign up page from sign in window.
     def click_on_sign_up_button_in_login_window(self):
         self._sign_up_button.click()
 
-        # this function is used in most tests to sign in flow in setUps.
+    # this function is used in most tests to sign in flow in setUps.
     def valid_login_flow(self):
         logging.info("Attempting to find elements for login flow function")
         try:
@@ -56,7 +56,7 @@ class LoginPage(BasePage):
             logging.error("Error in finding element for login flow function")
         self.click_on_sign_in_button()
 
-        # this function to ensure error message when trying to invalid sign in.
+    # this function to ensure error message when trying to invalid sign in.
     def alert_message_for_login(self):
         logging.info("Attempting to find elements for login function")
         try:

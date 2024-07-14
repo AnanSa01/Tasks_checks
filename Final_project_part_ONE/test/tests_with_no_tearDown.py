@@ -25,12 +25,12 @@ class MyTestCase(unittest.TestCase):
         self.home_page = HomePage(self.driver)
         logging.info("Switching driver to HomePage")
 
-        # this tearDown just for closing the browser after finishing testing.
+    # this tearDown just for closing the browser after finishing testing.
     def tearDown(self):
         self.driver.quit()
         logging.info(f'{self.browser.config["browser"]} web driver is closed.\n')
 
-        #  This test is to ensure that the user can search and find books by its author.
+    #  This test is to ensure that the user can search and find books by its author.
     def test_search_a_book_by_author(self):
         print("Test searching books by author -")
         logging.info("*TEST* searching books by author -")
@@ -43,7 +43,7 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(search_page.search_for_author_name(), author_name.title(), "Error! No match.")
         logging.info("assertEqual if author name displayed in search is equal input author name.")
 
-        #  This test is to ensure that the user can find a book in My Books list and open it.
+    #  This test is to ensure that the user can find a book in My Books list and open it.
     def test_find_book_in_my_books_list(self):
         print("Test finding book in my books list -")
         logging.info("*TEST* finding book in my books list -")
@@ -57,7 +57,7 @@ class MyTestCase(unittest.TestCase):
                       "The two titles in the result is not the same.")
         logging.info("assertIn if book input is in book displayed in search")
 
-        #  This test is to ensure that the user can change the rating of a book and the website accept it.
+    #  This test is to ensure that the user can change the rating of a book and the website accept it.
     def test_changing_rating_of_a_book(self):
         print("Test changing rating of a book -")
         logging.info("*TEST* changing rating of a book -")
@@ -78,7 +78,7 @@ class MyTestCase(unittest.TestCase):
         self.assertNotEqual(before_change, after_change, "Error! Rating did not change.")
         logging.info("assertNotEqual to ensure the rating before and after HAS changed.")
 
-        # This test is to ensure that the user can change the order of books displayed in his lists.
+    # This test is to ensure that the user can change the order of books displayed in his lists.
     def test_changing_order_in_my_books(self):
         print("Test changing order in my books -")
         logging.info("*TEST* changing rating of a book -")
@@ -95,7 +95,7 @@ class MyTestCase(unittest.TestCase):
         self.assertNotEqual(order_previous, order_next, "Error! Order did not change.")
         logging.info("assertNotEqual to ensure the order before and after HAS changed.")
 
-        # This test is to ensure that the user can add another user as a friend and also deleting the request.
+    # This test is to ensure that the user can add another user as a friend and also deleting the request.
     def test_add_a_friend_and_then_delete_request(self):
         print("Test adding a friend and then deleting the request -")
         logging.info("*TEST* adding a friend and then deleting the request -")

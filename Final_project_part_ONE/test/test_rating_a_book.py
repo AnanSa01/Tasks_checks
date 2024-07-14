@@ -25,14 +25,14 @@ class MyTestCase(unittest.TestCase):
         self.home_page = HomePage(self.driver)
         logging.info("Switching driver to HomePage")
 
-        # this tearDown function to clean up saved activities and prepare the website for next tests.
+    # this tearDown function to clean up saved activities and prepare the website for next tests.
     def tearDown(self):
         self.search_page.rating_the_book(self.rating_of_the_book)
         logging.info("In tearDown - pressing same rating to remove it")
         self.driver.quit()
         logging.info(f'{self.browser.config["browser"]} web driver is closed.\n')
 
-        # This test is to ensure that the user can rate a book and being saved in the website.
+    # This test is to ensure that the user can rate a book and being saved in the website.
     def test_rating_a_book(self):
         print("Test rating a book -")
         logging.info("*TEST* rating a book -")

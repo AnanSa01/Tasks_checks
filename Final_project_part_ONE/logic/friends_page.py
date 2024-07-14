@@ -25,12 +25,12 @@ class FriendsPage(BaseAppPage):
         except NoSuchElementException:
             logging.error("Error in finding element in FriendsPage")
 
-        # this function is to search for a person flow by sending name to the input and clicking search.
+    # this function is to search for a person flow by sending name to the input and clicking search.
     def search_for_a_person_flow(self, person_input):
         self._find_friends_input.send_keys(person_input)
         self._search_members_button.click()
 
-        # this function is to click on the add as a friend button after find the profile in friends search.
+    # this function is to click on the add as a friend button after find the profile in friends search.
     def add_as_a_friend_first_person(self):
         logging.info("Attempting to find elements for add as a friend function")
         try:
@@ -39,7 +39,7 @@ class FriendsPage(BaseAppPage):
             logging.error("Error in finding element for add as a friend function")
         self._add_as_a_friend_buttons.click()
 
-        # this function is to open the user profile.
+    # this function is to open the user profile.
     def click_on_pictures_button(self):
         logging.info("Attempting to find elements for friend's picture function")
         try:
@@ -48,7 +48,7 @@ class FriendsPage(BaseAppPage):
             logging.error("Error in finding element for friend's picture function")
         self._click_on_picture_button.click()
 
-        # this function is to unfollow the user when opening his profile.
+    # this function is to unfollow the user when opening his profile.
     def click_on_unfollow_button(self):
         logging.info("Attempting to find elements for unfollow function")
         try:
@@ -57,7 +57,7 @@ class FriendsPage(BaseAppPage):
             logging.error("Error in finding element for unfollow function")
         self._unfollow_button.click()
 
-        # this function to confirm unfollowing the user after clicking unfollow.
+    # this function to confirm unfollowing the user after clicking unfollow.
     def click_on_unfollow_confirm_button(self):
         logging.info("Attempting to find elements for unfollow confirm function")
         try:
@@ -66,7 +66,7 @@ class FriendsPage(BaseAppPage):
             logging.error("Error in finding element for unfollow confirm function")
         self._unfollow_confirm_button.click()
 
-        # this function to return to the test the state of follow button to make self.assureEqual.
+    # this function to return to the test the state of follow button to make self.assureEqual.
     def return_follow_button_state(self):
         logging.info("Attempting to find elements for follow button state function")
         try:

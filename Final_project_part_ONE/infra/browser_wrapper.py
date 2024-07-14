@@ -6,8 +6,6 @@ from infra.config_provider import ConfigProvider
 from selenium.common.exceptions import *
 
 
-
-
 class BrowserWrapper:
 
     def __init__(self):
@@ -19,7 +17,7 @@ class BrowserWrapper:
             logging.error("Error in finding element in BrowserWrapper")
         print("\nTest Start")
 
-        # this function takes instructions from the config file about the browser driver and the url site.
+    # this function takes instructions from the config file about the browser driver and the url site.
     def get_driver(self, url):
         try:
             if self.config["browser"] == "Chrome":

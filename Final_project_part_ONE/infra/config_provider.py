@@ -3,7 +3,6 @@ import logging
 from infra.logging_basicConfig import LoggingSetup
 
 
-
 class ConfigProvider:
 
     # this function is to load the config from the json file and to use it
