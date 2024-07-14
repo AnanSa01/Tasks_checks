@@ -24,7 +24,6 @@ class MyTestCase(unittest.TestCase):
 
     # This test is to ensure the basic activity of signing in.
     def test_valid_login(self):
-        print("Test valid login -")
         logging.info("*TEST* valid login -")
         login_page = LoginPage(self.driver)
         logging.info("Sending driver to LoginPage")
@@ -41,7 +40,6 @@ class MyTestCase(unittest.TestCase):
 
     # This test is to ensure that the website does not let the user sign in with no password input.
     def test_not_adding_password_in_login(self):
-        print("Test not adding password in login -")
         logging.info("*TEST* not adding password in login -")
         login_page = LoginPage(self.driver)
         logging.info("Sending driver to LoginPage")
@@ -56,7 +54,6 @@ class MyTestCase(unittest.TestCase):
 
     # This test is to ensure that the website does not let the user sign in with no password nor email input.
     def test_not_adding_password_nor_email_in_login(self):
-        print("Test not adding password in login -")
         logging.info("*TEST* not adding password in login -")
         login_page = LoginPage(self.driver)
         logging.info("Sending driver to LoginPage")

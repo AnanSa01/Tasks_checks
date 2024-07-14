@@ -64,7 +64,6 @@ class MyTestCase(unittest.TestCase):
 
     # This test is to ensure that the website does not connect when entering unmatched passwords input.
     def test_password_not_match_re_enter_password(self):
-        print("Test password not matching re-entering password -")
         logging.info("*TEST* password not matching re-entering password -")
         login_page = LoginPage(self.driver)
         logging.info("Sending driver to LoginPage")
@@ -87,7 +86,6 @@ class MyTestCase(unittest.TestCase):
 
     # This test is to ensure that the website does not connect when entering too short password input.
     def test_password_too_short_to_enter(self):
-        print("Test password too short (at least 6 characters) -")
         logging.info("*TEST* password too short (at least 6 characters) -")
         login_page = LoginPage(self.driver)
         logging.info("Sending driver to LoginPage")

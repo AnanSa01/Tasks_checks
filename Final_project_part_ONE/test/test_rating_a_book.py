@@ -34,7 +34,6 @@ class MyTestCase(unittest.TestCase):
 
     # This test is to ensure that the user can rate a book and being saved in the website.
     def test_rating_a_book(self):
-        print("Test rating a book -")
         logging.info("*TEST* rating a book -")
         name_of_the_book = "Return of the King"  # Change name of the book searched here
         logging.info(f"Name of the book for the search: {name_of_the_book}")

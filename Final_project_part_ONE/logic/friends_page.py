@@ -38,6 +38,7 @@ class FriendsPage(BaseAppPage):
         except NoSuchElementException:
             logging.error("Error in finding element for add as a friend function")
         self._add_as_a_friend_buttons.click()
+        time.sleep(2)
 
     # this function is to open the user profile.
     def click_on_pictures_button(self):
@@ -56,6 +57,7 @@ class FriendsPage(BaseAppPage):
         except NoSuchElementException:
             logging.error("Error in finding element for unfollow function")
         self._unfollow_button.click()
+        time.sleep(2)
 
     # this function to confirm unfollowing the user after clicking unfollow.
     def click_on_unfollow_confirm_button(self):
@@ -65,6 +67,7 @@ class FriendsPage(BaseAppPage):
         except NoSuchElementException:
             logging.error("Error in finding element for unfollow confirm function")
         self._unfollow_confirm_button.click()
+        time.sleep(2)
 
     # this function to return to the test the state of follow button to make self.assureEqual.
     def return_follow_button_state(self):
