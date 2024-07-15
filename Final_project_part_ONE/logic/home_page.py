@@ -12,12 +12,14 @@ class HomePage(BaseAppPage):
 
     def __init__(self, driver):
         super().__init__(driver)
-        logging.info("Attempting to find elements in HomePage")
         try:
             self._header_is_displayed = self._driver.find_element(By.XPATH, self.HEADER_IS_DISPLAYED)
         except NoSuchElementException:
             logging.error("Error in finding element in HomePage")
 
-    # this function to ensure that the header is displayed for login test.
     def check_if_header_displayed(self):
+        """
+        this function to ensure that the header is displayed for login test.
+        :return: True/False if header is displayed in home page
+        """
         return self._header_is_displayed.is_displayed()

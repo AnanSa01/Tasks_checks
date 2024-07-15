@@ -3,14 +3,17 @@ from selenium import webdriver
 
 class BasePage:
 
-    # always get driver
     def __init__(self, driver):
         self._driver = driver
 
-    # this function to refresh page from everywhere in the website.
     def refresh_page(self):
+        """
+        this function to refresh page from everywhere in the website.
+        """
         self._driver.refresh()
 
-    # this function to turn back page from everywhere in the website.
     def back_func(self):
+        """
+        this function to turn back page from everywhere in the website.
+        """
         self._driver.back()

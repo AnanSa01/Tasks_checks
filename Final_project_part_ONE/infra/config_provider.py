@@ -1,11 +1,13 @@
 import json
 import logging
 from infra.logging_basicConfig import LoggingSetup
+import infra.utilities
 
 
 class ConfigProvider:
-
-    # this function is to load the config from the json file and to use it
+    """
+    this function is to load the config from the json file and to use it
+    """
     @staticmethod
     def load_from_file(filename):
         try:

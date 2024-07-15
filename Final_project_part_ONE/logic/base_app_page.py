@@ -15,7 +15,6 @@ class BaseAppPage(BasePage):
 
     def __init__(self, driver):
         super().__init__(driver)
-        logging.info("Attempting to find elements in BaseAppPage")
         try:
             self._my_books_button = self._driver.find_element(By.XPATH, self.MY_BOOKS_BUTTON)
             self._search_bar = self._driver.find_element(By.XPATH, self.SEARCH_BAR)
@@ -24,16 +23,22 @@ class BaseAppPage(BasePage):
         except NoSuchElementException:
             logging.error("Error in finding element in BaseAppPage")
 
-    # this function is to click on my books button in the header
     def click_on_my_books_button(self):
+        """
+        this function is to click on my books button in the header
+        """
         self._my_books_button.click()
 
-        # this function is to search for a book in the search bar
-
     def search_for_a_book(self, user_input):
+        """
+        this function is to search for a book in the search bar
+        :param user_input: input of the book to be searched.
+        """
         self._search_bar.send_keys(user_input)
         self._search_bar_button.click()
 
-    # this function is to click on friends button in the header
     def click_on_friends_button(self):
+        """
+        this function is to click on friends button in the header
+        """
         self._friend_button.click()

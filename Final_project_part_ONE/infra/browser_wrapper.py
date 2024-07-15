@@ -7,17 +7,17 @@ from selenium.common.exceptions import *
 
 
 class BrowserWrapper:
-
+    """
+    this function takes instructions from the config file about the browser driver and the url site.
+    """
     def __init__(self):
         self._driver = None
-        logging.info("Attempting to find elements in BrowserWrapper")
         try:
             self.config = ConfigProvider.load_from_file('../config.json')
         except NoSuchElementException:
             logging.error("Error in finding element in BrowserWrapper")
         print("\nTest Start")
 
-    # this function takes instructions from the config file about the browser driver and the url site.
     def get_driver(self, url):
         try:
             if self.config["browser"] == "Chrome":

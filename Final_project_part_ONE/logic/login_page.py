@@ -18,7 +18,6 @@ class LoginPage(BasePage):
 
     def __init__(self, driver):
         super().__init__(driver)
-        logging.info("Attempting to find elements in LoginPage")
         try:
             self._email_input_field = self._driver.find_element(By.XPATH, self.EMAIL_INPUT)
             self._password_input_field = self._driver.find_element(By.XPATH, self.PASSWORD_INPUT)
@@ -27,27 +26,38 @@ class LoginPage(BasePage):
         except NoSuchElementException:
             logging.error("Error in finding element in LoginPage")
 
-    # this function is to write in Email input in login page.
     def write_in_email_input_field(self, user_email_input):
+        """
+        this function is to write in Email input in login page.
+        :param user_email_input: input for "Email" field.
+        """
         self._email_input_field.click()
         self._email_input_field.send_keys(user_email_input)
 
-    # this function is to write in password input in login page.
     def write_in_password_input_field(self, user_password_input):
+        """
+        this function is to write in password input in login page.
+        :param user_password_input: input for "Password" field.
+        """
         self._password_input_field.click()
         self._password_input_field.send_keys(user_password_input)
 
-    # this function is to click on login after filling the inputs.
     def click_on_sign_in_button(self):
+        """
+        this function is to click on login after filling the inputs.
+        """
         self._sign_in_button.click()
 
-    # this function to move to sign up page from sign in window.
     def click_on_sign_up_button_in_login_window(self):
+        """
+        this function to move to sign up page from sign in window.
+        """
         self._sign_up_button.click()
 
-    # this function is used in most tests to sign in flow in setUps.
     def valid_login_flow(self):
-        logging.info("Attempting to find elements for login flow function")
+        """
+        this function is used in most tests to sign in flow in setUps.
+        """
         try:
             self.config = ConfigProvider.load_from_file('../config.json')
             self.write_in_email_input_field(self.config["email"])
@@ -56,9 +66,11 @@ class LoginPage(BasePage):
             logging.error("Error in finding element for login flow function")
         self.click_on_sign_in_button()
 
-    # this function to ensure error message when trying to invalid sign in.
     def alert_message_for_login(self):
-        logging.info("Attempting to find elements for login function")
+        """
+        this function to ensure error message when trying to invalid sign in.
+        :return: True/False if alert message in login is displayed.
+        """
         try:
             self._alert_message_for_login = self._driver.find_element(By.XPATH, self.ALERT_MESSAGE_FOR_LOGIN)
         except NoSuchElementException:

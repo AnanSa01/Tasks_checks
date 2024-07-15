@@ -20,29 +20,37 @@ class SearchPage(BaseAppPage):
 
     def __init__(self, driver):
         super().__init__(driver)
-        logging.info("Attempting to find elements in SearchPage")
         try:
             self._catch_results_in_page = self._driver.find_elements(By.XPATH, self.CATCH_RESULTS_IN_PAGE)
             self._author_name = self._driver.find_elements(By.XPATH, self.AUTHOR_NAME)
         except NoSuchElementException:
             logging.error("Error in finding element in SearchPage")
 
-    # this function clicks on the first result in the search - which is the most relevant search.
     def first_result_in_search(self):
+        """
+        this function clicks on the first result in the search - which is the most relevant search.
+        """
         self._catch_results_in_page[0].click()
 
-    # this function does a flow of rating a book from the user input.
     def rating_the_book(self, rating_input):
-        logging.info("Attempting to find elements for rating book function")
+        """
+        this function does a flow of rating a book from the user input.
+        :param rating_input: rating number of the opened book profile.
+        """
         try:
             self._rating_book = self._driver.find_elements(By.XPATH, self.RATING_BOOK)
         except NoSuchElementException:
             logging.error("Error in finding element for rating book function")
         self._rating_book[rating_input - 1].click()
 
-    # this function returns the current rating of book input in integer.
+    def clear_rating_of_the_book(self, rating_input):
+        self.rating_the_book(rating_input)
+
     def check_current_rating_of_the_book_open(self):
-        logging.info("Attempting to find elements for checking current rating of book function")
+        """
+        this function returns the current rating of book input in integer.
+        :return: rating of the book in integer number.
+        """
         try:
             self._current_rating = self._driver.find_elements(By.XPATH, self.CURRENT_RATING)
         except NoSuchElementException:
@@ -50,9 +58,10 @@ class SearchPage(BaseAppPage):
         attribute_value = self._current_rating[0].get_attribute("aria-label").split()
         return int(attribute_value[1])
 
-    # this function is to check the user current rating and changing it based on the previous rating.
     def change_rating_of_the_book(self):
-        logging.info("Attempting to find elements for changing rating of book function")
+        """
+        this function is to check the user current rating and changing it based on the previous rating.
+        """
         try:
             self._rating_book = self._driver.find_elements(By.XPATH, self.RATING_BOOK)
         except NoSuchElementException:
@@ -63,6 +72,9 @@ class SearchPage(BaseAppPage):
         else:
             self._rating_book[4].click()
 
-    # this function is to take the author name of the result and to return the first one - also most relevant.
     def search_for_author_name(self):
+        """
+        this function is to take the author name of the result and to return the first one - also most relevant.
+        :return: the author of the first book displayed
+        """
         return self._author_name[0].text

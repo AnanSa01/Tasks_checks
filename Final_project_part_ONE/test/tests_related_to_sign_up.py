@@ -1,7 +1,9 @@
 import logging
 import unittest
 
+from infra.config_provider import ConfigProvider
 from infra.logging_basicConfig import LoggingSetup
+from infra.utilities import Utilities
 from infra.browser_wrapper import BrowserWrapper
 from logic.login_page import LoginPage
 from logic.sign_up_page import SignUpPage
@@ -9,99 +11,86 @@ from logic.sign_up_page import SignUpPage
 
 class MyTestCase(unittest.TestCase):
 
-    # this setUp just for opening a browser with a selected driver
     def setUp(self):
+        """
+        this setUp for opening a browser with a selected driver and going to the Sign-Up page.
+        """
         self.browser = BrowserWrapper()
         self.driver = self.browser.get_driver(self.browser.config["base_url"])
         logging.info(f'Opening a {self.browser.config["browser"]} web driver.')
+        self.login_page = LoginPage(self.driver)
+        self.login_page.click_on_sign_up_button_in_login_window()
+        self.sign_up_page = SignUpPage(self.driver)
 
-    # this tearDown just for closing the browser after finishing testing.
     def tearDown(self):
+        """
+        this tearDown just for closing the browser after finishing testing.
+        """
         self.driver.quit()
-        logging.info(f'{self.browser.config["browser"]} web driver is closed.\n')
+        logging.info(f'---------- End of test. {self.browser.config["browser"]} web driver is closed. ----------\n')
 
-    # This test is to ensure that the website does not let the user sign up with input of an already connected user.
     def test_sign_up_with_already_connected_user(self):
-        print("Test signing up with already connected user -")
-        logging.info("*TEST* signing up with already connected user -")
-        login_page = LoginPage(self.driver)
-        logging.info("Sending driver to LoginPage")
-        login_page.click_on_sign_up_button_in_login_window()
-        logging.info("Click on sign up function")
-        sign_up_page = SignUpPage(self.driver)
-        logging.info("Switching Driver to SignUpPage")
-        sign_up_page.write_in_your_name_field("A S")
-        logging.info("Input valid name")
-        sign_up_page.write_in_email_input("aaafortesting@gmail.com")
-        logging.info("Input valid Email address")
-        sign_up_page.write_in_password_and_re_enter_password_flow("aaafortesting123456789")
-        logging.info("Input valid password")
-        sign_up_page.click_on_create_account_button()
-        logging.info("Click on create account function")
-        self.assertTrue(sign_up_page.alert_message_for_sign_up(), "Error! Should NOT be able to connect")
+        """
+        this function tests trying to sign up with input of an already connected user.
+        -----
+        test case   #: 004
+        requirement #: 003
+        """
+        logging.info("---------- Initialize Test: signing up with already connected user ----------")
+        self.config = ConfigProvider.load_from_file('../config.json')
+        self.sign_up_page.write_in_your_name_field(self.config["your_name_input"])
+        self.sign_up_page.write_in_email_input(self.config["email"])
+        self.sign_up_page.write_in_password_and_re_enter_password_flow(self.config["password"])
+        self.sign_up_page.click_on_create_account_button()
+        self.assertTrue(self.sign_up_page.alert_message_for_sign_up(), "Error! Should NOT be able to connect")
         logging.info("assertTrue if alert message is displayed")
 
-    # This test is to ensure that the website does not accept invalid Email input.
     def test_invalid_email_sign_up(self):
-        print("Test invalid Email sign up -")
-        logging.info("*TEST* invalid Email sign up -")
-        login_page = LoginPage(self.driver)
-        logging.info("Sending driver to LoginPage")
-        login_page.click_on_sign_up_button_in_login_window()
-        logging.info("Click on sign up function")
-        sign_up_page = SignUpPage(self.driver)
-        logging.info("Switching Driver to SignUpPage")
-        sign_up_page.write_in_your_name_field("A S")
-        logging.info("Input valid name")
-        sign_up_page.write_in_email_input("@@@@@@@@@@@@@@@")
-        logging.info("Input INVALID Email address")
-        sign_up_page.write_in_password_and_re_enter_password_flow("0000000000")
-        logging.info("Input valid password")
-        sign_up_page.click_on_create_account_button()
-        logging.info("Click on create account function")
-        self.assertTrue(sign_up_page.alert_message_for_sign_up(), "Error! Should NOT be able to connect")
+        """
+        this function tests signing up with invalid email input.
+        -----
+        test case   #: 005
+        requirement #: 003
+        """
+        logging.info("---------- Initialize Test: invalid Email sign up ----------")
+        self.sign_up_page.write_in_your_name_field(Utilities.generate_random_string_just_text(5))
+        self.sign_up_page.write_in_email_input(Utilities.generate_random_string_just_punctuation(10))
+        self.sign_up_page.write_in_password_and_re_enter_password_flow(Utilities.generate_random_string_just_numbers(8))
+        self.sign_up_page.click_on_create_account_button()
+        self.assertTrue(self.sign_up_page.alert_message_for_sign_up(), "Error! Should NOT be able to connect")
         logging.info("assertTrue if alert message is displayed")
 
-    # This test is to ensure that the website does not connect when entering unmatched passwords input.
     def test_password_not_match_re_enter_password(self):
-        logging.info("*TEST* password not matching re-entering password -")
-        login_page = LoginPage(self.driver)
-        logging.info("Sending driver to LoginPage")
-        login_page.click_on_sign_up_button_in_login_window()
-        logging.info("Click on sign up function")
-        sign_up_page = SignUpPage(self.driver)
-        logging.info("Switching Driver to SignUpPage")
-        sign_up_page.write_in_your_name_field("A S")
-        logging.info("Input valid name")
-        sign_up_page.write_in_email_input("fortesting@gmail.com")
-        logging.info("Input valid Email address")
-        sign_up_page.write_in_just_password_input("123456789")
-        logging.info("Input password")
-        sign_up_page.write_in_just_re_enter_password_input("987654321")
-        logging.info("Re-enter password not matching the previous password")
-        sign_up_page.click_on_create_account_button()
-        logging.info("Click on create account function")
-        self.assertTrue(sign_up_page.alert_message_for_sign_up(), "Error! Should NOT be able to connect")
+        """
+        this function tests input of password not matching input of re-enter password.
+        -----
+        test case   #: 006
+        requirement #: 003
+        """
+        logging.info("---------- Initialize Test: password not matching re-entering password ----------")
+        self.sign_up_page.write_in_your_name_field(Utilities.generate_random_string_just_text(5))
+        self.config = ConfigProvider.load_from_file('../config.json')
+        self.sign_up_page.write_in_email_input(self.config["invalid_email"])
+        self.sign_up_page.write_in_just_password_input(Utilities.generate_random_string_just_numbers(8))
+        self.sign_up_page.write_in_just_re_enter_password_input(Utilities.generate_random_string_just_numbers(9))
+        self.sign_up_page.click_on_create_account_button()
+        self.assertTrue(self.sign_up_page.alert_message_for_sign_up(), "Error! Should NOT be able to connect")
         logging.info("assertTrue if alert message is displayed")
 
-    # This test is to ensure that the website does not connect when entering too short password input.
     def test_password_too_short_to_enter(self):
-        logging.info("*TEST* password too short (at least 6 characters) -")
-        login_page = LoginPage(self.driver)
-        logging.info("Sending driver to LoginPage")
-        login_page.click_on_sign_up_button_in_login_window()
-        logging.info("Click on sign up function")
-        sign_up_page = SignUpPage(self.driver)
-        logging.info("Switching Driver to SignUpPage")
-        sign_up_page.write_in_your_name_field("A S")
-        logging.info("Input valid Email address")
-        sign_up_page.write_in_email_input("fortesting@gmail.com")
-        logging.info("Input valid Email address")
-        sign_up_page.write_in_password_and_re_enter_password_flow("00000")
-        logging.info("Input TOO SHORT password")
-        sign_up_page.click_on_create_account_button()
-        logging.info("Click on create account function")
-        self.assertTrue(sign_up_page.alert_message_for_sign_up(), "Error! Should NOT be able to connect")
+        """
+        this function tests entering password that is too short (less than 6 characters).
+        -----
+        test case   #: 007
+        requirement #: 003
+        """
+        logging.info("---------- Initialize Test: password too short (at least 6 characters) ----------")
+        self.sign_up_page.write_in_your_name_field(Utilities.generate_random_string_just_text(5))
+        self.config = ConfigProvider.load_from_file('../config.json')        
+        self.sign_up_page.write_in_email_input(self.config["invalid_email"]) 
+        self.sign_up_page.write_in_password_and_re_enter_password_flow(Utilities.generate_random_string_just_numbers(4))
+        self.sign_up_page.click_on_create_account_button()
+        self.assertTrue(self.sign_up_page.alert_message_for_sign_up(), "Error! Should NOT be able to connect")
         logging.info("assertTrue if alert message is displayed")
 
 

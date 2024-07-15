@@ -21,7 +21,6 @@ class MyBooksPage(BasePage):
 
     def __init__(self, driver):
         super().__init__(driver)
-        logging.info("Attempting to find elements in MyBooksPage")
         try:
             self._add_shelf_button = self._driver.find_element(By.XPATH, self.ADD_SHELF_BUTTON)
             self._avg_rating_button = self._driver.find_element(By.XPATH, self.AVG_RATING_BUTTON)
@@ -31,21 +30,29 @@ class MyBooksPage(BasePage):
         except NoSuchElementException:
             logging.error("Error in finding element in MyBooksPage")
 
-    # this function is ensure that the user can change the order of how his books is displayed.
     def change_order_in_my_books(self):
+        """
+        this function is ensure that the user can change the order of how his books is displayed.
+        """
         self._avg_rating_button.click()
 
-    # this function is to return the first book displayed in the list - to check change order test.
     def return_first_book_of_the_list(self):
-        logging.info("Attempting to find elements for returning first book of the list function")
+        """
+        this function is to return the first book displayed in the list - to check change order test.
+        :return: the first book displayed
+        """
         try:
             self._my_books_titles_dynamic = self._driver.find_elements(By.XPATH, self.MY_BOOKS_TITLES)
         except NoSuchElementException:
             logging.error("Error in finding element for returning first book of the list function")
         return self._my_books_titles_dynamic[0].text
 
-    # this function checks if the book wanted from the user is actually in the list of books.
     def choose_one_of_my_books_by_title(self, title_input):
+        """
+        this function checks if the book wanted from the user is actually in the list of books.
+        :param title_input: to check if this title exist in the list
+        :return: the book title how it was found in the list
+        """
         for title in self._my_books_titles:
             if title_input.lower() in title.text.lower():
                 return title.text

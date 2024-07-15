@@ -18,21 +18,24 @@ class FriendsPage(BaseAppPage):
 
     def __init__(self, driver):
         super().__init__(driver)
-        logging.info("Attempting to find elements in FriendsPage")
         try:
             self._find_friends_input = self._driver.find_element(By.XPATH, self.FIND_FRIENDS_INPUT)
             self._search_members_button = self._driver.find_element(By.XPATH, self.SEARCH_MEMBERS_BUTTON)
         except NoSuchElementException:
             logging.error("Error in finding element in FriendsPage")
 
-    # this function is to search for a person flow by sending name to the input and clicking search.
     def search_for_a_person_flow(self, person_input):
+        """
+        this function is to search for a person flow by sending name to the input and clicking search.
+        :param person_input: input to search for a user in "Friends"
+        """
         self._find_friends_input.send_keys(person_input)
         self._search_members_button.click()
 
-    # this function is to click on the add as a friend button after find the profile in friends search.
     def add_as_a_friend_first_person(self):
-        logging.info("Attempting to find elements for add as a friend function")
+        """
+        this dynamic function is to click on the add as a friend button after find the profile in friends search.
+        """
         try:
             self._add_as_a_friend_buttons = self._driver.find_element(By.XPATH, self.ADD_AS_A_FRIEND_BUTTONS)
         except NoSuchElementException:
@@ -40,18 +43,20 @@ class FriendsPage(BaseAppPage):
         self._add_as_a_friend_buttons.click()
         time.sleep(2)
 
-    # this function is to open the user profile.
     def click_on_pictures_button(self):
-        logging.info("Attempting to find elements for friend's picture function")
+        """
+        this dynamic function is to open the user profile.
+        """
         try:
             self._click_on_picture_button = self._driver.find_element(By.XPATH, self.CLICK_ON_PICTURE_BUTTONS)
         except NoSuchElementException:
             logging.error("Error in finding element for friend's picture function")
         self._click_on_picture_button.click()
 
-    # this function is to unfollow the user when opening his profile.
     def click_on_unfollow_button(self):
-        logging.info("Attempting to find elements for unfollow function")
+        """
+        this dynamic function is to unfollow the user when opening his profile.
+        """
         try:
             self._unfollow_button = self._driver.find_element(By.XPATH, self.UNFOLLOW_BUTTON)
         except NoSuchElementException:
@@ -59,9 +64,10 @@ class FriendsPage(BaseAppPage):
         self._unfollow_button.click()
         time.sleep(2)
 
-    # this function to confirm unfollowing the user after clicking unfollow.
     def click_on_unfollow_confirm_button(self):
-        logging.info("Attempting to find elements for unfollow confirm function")
+        """
+        this dynamic function to confirm unfollowing the user after clicking unfollow.
+        """
         try:
             self._unfollow_confirm_button = self._driver.find_element(By.XPATH, self.UNFOLLOW_CONFIRM_BUTTON)
         except NoSuchElementException:
@@ -69,9 +75,11 @@ class FriendsPage(BaseAppPage):
         self._unfollow_confirm_button.click()
         time.sleep(2)
 
-    # this function to return to the test the state of follow button to make self.assureEqual.
     def return_follow_button_state(self):
-        logging.info("Attempting to find elements for follow button state function")
+        """
+        this function returns the state of follow button (Follow/Unfollow) to make self.assureEqual
+        :return: (Follow/Unfollow)
+        """
         try:
             self._follow_button_state = self._driver.find_element(By.XPATH, self.FOLLOW_BUTTON_STATE)
         except NoSuchElementException:
