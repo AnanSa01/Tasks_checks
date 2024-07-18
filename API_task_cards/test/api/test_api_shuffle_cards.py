@@ -8,11 +8,10 @@ class MyTestCase(unittest.TestCase):
     def setUp(self):
         api_request = APIWrapper()
         self.api_shuffle = APIShuffle(api_request)
-        self.api_shuffle = APIShuffle(api_request)
 
     def test_shuffle_the_cards_get(self):
         """
-        this function tests shuffling card with GET
+        this function tests shuffling cards with GET
         """
         result = self.api_shuffle.get_shuffle_the_deck_get()
         body = result.json()
@@ -22,7 +21,7 @@ class MyTestCase(unittest.TestCase):
 
     def test_shuffle_the_cards_post(self):
         """
-        this function tests shuffling card with POST
+        this function tests shuffling cards with POST
         """
         result = self.api_shuffle.get_shuffle_the_deck_post()
         self.assertTrue(result.ok)

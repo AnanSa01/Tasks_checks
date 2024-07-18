@@ -1,5 +1,5 @@
 {
-  "base_url" : "https://deckofcardsapi.com/",
+  "base_url" : "https://deckofcardsapi.com/api/deck/new",
   "draw_a_card" : 4,
   "deck_count": 1,
   "add_jokers": "jokers_enabled=true"
