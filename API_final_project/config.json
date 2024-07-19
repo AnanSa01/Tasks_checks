@@ -1,0 +1,55 @@
+{
+  "base_url" : "https://linkedin-api8.p.rapidapi.com",
+  "header":
+  {
+      "x-rapidapi-key": "7410540f0emsh62d09e7f0787521p1a869cjsn3182601dc3ea",
+      "x-rapidapi-host": "linkedin-api8.p.rapidapi.com"
+  },
+  "search_people_function": "keywords=bob&start=0&geo=103644278,101165590",
+  "get_profile_data_function": "username",
+  "get_profile_posts_function": "adamselipsky",
+  "get_company_jobs_function": "username=google",
+  "get_company_jobs_body":
+  {
+      "companyIds": [5383240, 2382910],
+	  "page": 1
+  },
+  "get_company_employees_count_body":
+  {
+	"companyId": "1441",
+	"locations": []
+  },
+  "search_post_by_keyword_body":
+  {
+	"keyword": "golang",
+	"sortBy": "date_posted",
+	"datePosted": "past-24h",
+	"start": "0"
+  },
+  "search_post_by_hashtag_body":
+  {
+	"hashtag": "golang",
+	"sortBy": "REV_CHRON",
+	"start": "0",
+	"paginationToken": ""
+  },
+  "get_post_reactions_body":
+  {
+	"url": "https://www.linkedin.com/posts/google_welcome-to-the-gemini-era-activity-7196224250288955393-hd08/?utm_source=share&utm_medium=member_desktop",
+	"page": 1
+  },
+  "find_email_address_function": "url=https://www.linkedin.com/in/taylorotwell/",
+  "find_email_address_check_username": "taylorotwell",
+  "get_job_details_function": "id=3738360408",
+  "get_job_details_check_title": "Golang Developer",
+  "search_jobs_function": "keywords=golang&locationId=92000000&datePosted=anyTime&sort=mostRelevant",
+  "search_jobs_check_title": "Senior Blockchain Engineer",
+  "get_hiring_team_function": "keywords=golang&locationId=92000000&datePosted=anyTime&sort=mostRelevant",
+  "search_locations_function": "keyword=berlin",
+  "search_employees_function": "companyId=1441&start=0&geoIds=90009735,103035651",
+  "get_company_by_domain_function": "domain=google.com",
+  "get_given_recommendations_function": "username=ryanroslansky&start=0",
+  "about_this_profile_function": "username=williamhgates",
+  "get_profile_posts_comments_function": "urn=7169084130104737792&sort=mostRelevant",
+  "get_profile_likes_function": "username=username&start=0"
+}
