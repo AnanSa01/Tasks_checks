@@ -1,11 +1,14 @@
-from infra.api.api_wrapper import APIWrapper
-from infra.config_provider import ConfigProvider
+from logic.api._base_init import BaseInit
 
 
-class GetJobDetails:
-    def __init__(self, request: APIWrapper):
-        self._request = request
-        self.config = ConfigProvider.load_from_file("../../config.json")
+class GetJobDetails(BaseInit):
+    def __init__(self, request):
+        super().__init__(request)
 
     def find_job_details_api_get(self):
-        return self._request.get_request(f"{self.config["base_url"]}/get-job-details?{self.config["get_job_details_function"]}",self.config["header"])
+        return self._request.get_request(
+            f"{self.config["base_url"]}/get-job-details?{self.config["get_job_details_function"]}",
+            self.config["header"])
+
+    def return_data_in_find_job_details(self, body_of_find_job_details):
+        return body_of_find_job_details["data"]

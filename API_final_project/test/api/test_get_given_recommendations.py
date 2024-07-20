@@ -1,7 +1,7 @@
 import unittest
 
 from infra.api.api_wrapper import APIWrapper
-from logic.api.get_given_recommendations_NS import GetGivenRecommendations
+from logic.api.get_given_recommendations import GetGivenRecommendations
 
 
 class MyTestCase(unittest.TestCase):
@@ -13,8 +13,6 @@ class MyTestCase(unittest.TestCase):
         api_get_given_recommendations = GetGivenRecommendations(self._api_request)
         result = api_get_given_recommendations.get_given_recommendations_api_get()
         body = result.json()
-        print(body)
-        # data = body["data"]  it changes everytime
         self.assertTrue(result.ok)
         self.assertEqual(result.status_code, 200)
         self.assertEqual(body["message"], "")

@@ -13,11 +13,6 @@ class MyTestCase(unittest.TestCase):
         api_search_for_people = SearchPeople(self.api_request)
         result = api_search_for_people.search_people_api_get()
         body = result.json()
-        data = body["data"]
-        items = data["items"]
-        print(body)
-        first_item = items[2]["fullName"]
-        print(first_item)
         self.assertTrue(result.ok)
         self.assertEqual(result.status_code, 200)
         self.assertEqual(body["message"], "")

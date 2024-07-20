@@ -1,13 +1,10 @@
-from infra.api.api_wrapper import APIWrapper
 from infra.api.response_wrapper import ResponseWrapper
-from infra.config_provider import ConfigProvider
+from logic.api._base_init import BaseInit
 
 
-class SearchPostByKeyword:
-
-    def __init__(self, request: APIWrapper):
-        self._request = request
-        self.config = ConfigProvider.load_from_file('../../config.json')
+class SearchPostByKeyword(BaseInit):
+    def __init__(self, request):
+        super().__init__(request)
 
     def api_post_search_post_by_keyword(self):
         response = self._request.post_request(f"{self.config["base_url"]}/search-posts",

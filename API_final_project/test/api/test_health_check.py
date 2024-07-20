@@ -2,7 +2,7 @@ import unittest
 
 from infra.api.api_wrapper import APIWrapper
 from logic.utilities import LoadConfig
-from logic.api.get_job_details import GetJobDetails
+from logic.api.health_check import HealthCheck
 
 
 class MyTestCase(unittest.TestCase):
@@ -11,15 +11,15 @@ class MyTestCase(unittest.TestCase):
         self._api_request = APIWrapper()
         self.config = LoadConfig.return_file()
 
-    def test_get_job_details(self):
-        api_get_job_details = GetJobDetails(self._api_request)
-        result = api_get_job_details.find_job_details_api_get()
+    def test_health_check(self):
+        api_health_check = HealthCheck(self._api_request)
+        result = api_health_check.health_check_api_get()
         body = result.json()
-        data = api_get_job_details.return_data_in_find_job_details(body)
+        data = api_health_check.return_data_in_health_check(body)
         self.assertTrue(result.ok)
         self.assertEqual(result.status_code, 200)
-        self.assertEqual(data["title"], self.config["get_job_details_check_title"])
-
+        self.assertEqual(body["message"], self.config["test_health_check_message"])
+        self.assertTrue(data["health"])
 
 
 if __name__ == '__main__':

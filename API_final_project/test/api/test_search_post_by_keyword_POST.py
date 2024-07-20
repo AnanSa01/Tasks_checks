@@ -12,10 +12,10 @@ class MyTestCase(unittest.TestCase):
     def test_search_post_by_keyword(self):
         api_search_post_by_keyword = SearchPostByKeyword(self.api_request)
         result = api_search_post_by_keyword.api_post_search_post_by_keyword()
-        print(result.body)
         self.assertTrue(result.ok)
         self.assertEqual(result.status_code, 200)
         self.assertEqual(result.body["message"], "")
+        self.assertTrue(result.body["success"])
 
 
 if __name__ == '__main__':

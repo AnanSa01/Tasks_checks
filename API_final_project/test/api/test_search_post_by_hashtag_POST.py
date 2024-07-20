@@ -12,10 +12,10 @@ class MyTestCase(unittest.TestCase):
     def test_search_post_by_hashtag(self):
         api_search_post_by_hashtag = SearchPostByHashtag(self.api_request)
         result = api_search_post_by_hashtag.api_post_search_post_by_hashtag()
-        print(result.body)
         self.assertTrue(result.ok)
         self.assertEqual(result.status_code, 200)
         self.assertEqual(result.body["message"], "")
+        self.assertTrue(result.body["success"])
 
 
 if __name__ == '__main__':
