@@ -5,58 +5,55 @@
       "x-rapidapi-key": "de0ededcafmsh50a1fbcf0fbcf38p12fdb5jsna0ad4ada0890",
       "x-rapidapi-host": "linkedin-api8.p.rapidapi.com"
   },
-  "search_people_function": "keywords=bob&start=0&geo=103644278,101165590",
-  "get_profile_data_function": "username",
-  "get_profile_data_check_first_name": "Yogesh",
-  "get_profile_data_check_country": "India",
-  "get_profile_posts_function": "adamselipsky",
-  "get_profile_posts_check_username": "adamselipsky",
-  "get_company_jobs_function": "username=google",
-  "get_company_jobs_body":
-  {
-      "companyIds": [5383240, 2382910],
-	  "page": 1
-  },
-  "get_company_employees_count_body":
+  "get_company_employees_count_query_string":
   {
 	"companyId": "1441",
 	"locations": []
   },
-  "search_post_by_keyword_body":
+  "get_company_jobs_name": "google",
+  "get_company_jobs_query_string":
   {
-	"keyword": "golang",
-	"sortBy": "date_posted",
-	"datePosted": "past-24h",
-	"start": "0"
+      "companyIds": [5383240, 2382910],
+	  "page": 1
   },
-  "search_post_by_hashtag_body":
+  "get_hiring_team_id": "3903094332",
+  "get_hiring_team_message": "success",
+  "test_health_check_message": "success",
+  "get_company_by_domain_name": "google",
+  "get_job_detail_id": "3738360408",
+  "get_profile_data_username": "username",
+  "get_profile_data_check_first_name": "Yogesh",
+  "get_profile_data_check_country": "India",
+  "search_people_name": "Adam",
+  "search_people_place_wp": "geo=103644278,101165590",
+  "get_profile_posts_username": "adamselipsky",
+  "get_profile_likes_username": "username",
+  "get_profile_posts_comments_urn": "7169084130104737792",
+  "get_given_recommendations_username": "ryanroslansky",
+  "get_post_reactions_query_string":
+  {
+	"url": "https://www.linkedin.com/posts/google_welcome-to-the-gemini-era-activity-7196224250288955393-hd08/?utm_source=share&utm_medium=member_desktop",
+
+	"page": 1
+  },
+  "search_employees_companyId": "1441",
+  "search_employees_place_wp": "90009735,103035651",
+  "find_email_address_username": "taylorotwell",
+  "search_jobs_keyword": "golang",
+  "search_jobs_locationId": "92000000",
+  "search_locations_place": "Berlin",
+  "search_post_by_hashtag_query_string":
   {
 	"hashtag": "golang",
 	"sortBy": "REV_CHRON",
 	"start": "0",
 	"paginationToken": ""
   },
-  "get_post_reactions_body":
+  "search_post_by_keyword_query_string":
   {
-	"url": "https://www.linkedin.com/posts/google_welcome-to-the-gemini-era-activity-7196224250288955393-hd08/?utm_source=share&utm_medium=member_desktop",
-	"page": 1
-  },
-  "find_email_address_function": "url=https://www.linkedin.com/in/taylorotwell/",
-  "find_email_address_check_username": "taylorotwell",
-  "get_job_details_function": "id=3738360408",
-  "get_job_details_check_title": "Golang Developer",
-  "search_jobs_function": "keywords=golang&locationId=92000000&datePosted=anyTime&sort=mostRelevant",
-  "search_jobs_check_title": "Senior Blockchain Engineer",
-  "get_hiring_team_function": "id=3903094332&url=https://www.linkedin.com/jobs/view/3903094332/",
-  "get_hiring_team_message": "success",
-  "search_locations_function": "keyword=berlin",
-  "search_locations_check_name": "Berlin",
-  "search_employees_function": "companyId=1441&start=0&geoIds=90009735,103035651",
-  "get_company_by_domain_function": "domain=google.com",
-  "get_company_by_domain_check_name": "Google",
-  "get_given_recommendations_function": "username=ryanroslansky&start=0",
-  "about_this_profile_function": "username=williamhgates",
-  "get_profile_posts_comments_function": "urn=7169084130104737792&sort=mostRelevant",
-  "get_profile_likes_function": "username=username&start=0",
-  "test_health_check_message": "success"
+	"keyword": "golang",
+	"sortBy": "date_posted",
+	"datePosted": "past-24h",
+	"start": "0"
+  }
 }

@@ -4,7 +4,7 @@ from requests import RequestException
 
 from infra.logging_basicConfig import LoggingSetup
 
-from logic.api._base_init import BaseInit
+from logic.api.base_init import BaseInit
 
 
 class HealthCheck(BaseInit):

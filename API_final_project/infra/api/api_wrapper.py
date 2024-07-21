@@ -1,5 +1,7 @@
 import requests
 
+from infra.api.response_wrapper import ResponseWrapper
+
 
 class APIWrapper:
     """

@@ -4,7 +4,7 @@ from requests import RequestException
 
 from infra.logging_basicConfig import LoggingSetup
 
-from logic.api._base_init import BaseInit
+from logic.api.base_init import BaseInit
 
 
 class FindEmailAddress(BaseInit):
@@ -12,13 +12,13 @@ class FindEmailAddress(BaseInit):
     def __init__(self, request):
         super().__init__(request)
 
-    def find_email_address_api_get(self):
+    def find_email_address_api_get(self, username):
         """
         this function returns email address using GET
         """
         try:
             return self._request.get_request(
-                f"{self.config["base_url"]}/linkedin-to-email?{self.config["find_email_address_function"]}",
+                f"{self.config["base_url"]}/linkedin-to-email?url=https://www.linkedin.com/in/{username}/",
                 self.config["header"])
 
         except RequestException:

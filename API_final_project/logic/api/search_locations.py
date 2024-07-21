@@ -4,20 +4,20 @@ from requests import RequestException
 
 from infra.logging_basicConfig import LoggingSetup
 
-from logic.api._base_init import BaseInit
+from logic.api.base_init import BaseInit
 
 
 class SearchLocations(BaseInit):
     def __init__(self, request):
         super().__init__(request)
 
-    def search_locations_api_get(self):
+    def search_locations_api_get(self, location_name):
         """
         this function returns search locations using GET
         """
         try:
             return self._request.get_request(
-                f"{self.config["base_url"]}/search-locations?{self.config["search_locations_function"]}",
+                f"{self.config["base_url"]}/search-locations?keyword={location_name}",
                 self.config["header"])
 
         except RequestException:

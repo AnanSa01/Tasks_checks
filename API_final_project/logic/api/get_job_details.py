@@ -4,21 +4,20 @@ from requests import RequestException
 
 from infra.logging_basicConfig import LoggingSetup
 
-from logic.api._base_init import BaseInit
+from logic.api.base_init import BaseInit
 
 
 class GetJobDetails(BaseInit):
     def __init__(self, request):
         super().__init__(request)
 
-    def find_job_details_api_get(self):
+    def find_job_details_api_get(self, job_id):
         """
         this function returns job details using GET
         """
         try:
             return self._request.get_request(
-                f"{self.config["base_url"]}/get-job-details?{self.config["get_job_details_function"]}",
-                self.config["header"])
+                f"{self.config["base_url"]}/get-job-details?id={job_id}", self.config["header"])
 
         except RequestException:
             logging.error("Error in receiving API data from 'find_job_details' function")
