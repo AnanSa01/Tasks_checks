@@ -2,6 +2,7 @@ import logging
 
 from requests import RequestException
 
+from infra.api.response_wrapper import ResponseWrapper
 from infra.logging_basicConfig import LoggingSetup
 
 from logic.api.base_init import BaseInit
@@ -16,17 +17,11 @@ class GetProfileData(BaseInit):
         this function returns profile data using GET
         """
         try:
-            return self._request.get_request(
-                f"{self.config["base_url"]}/?username={profile_username}",
-                self.config["header"])
+            response = self._request.get_request(
+                f"{self.config["base_url"]}/?username={profile_username}", self.config["header"])
+
+            return ResponseWrapper(ok=response.ok, status_code=response.status_code, body=response.json())
 
         except RequestException:
             logging.error("Error in receiving API data from 'get_profile_data' function")
 
-    def return_geo_in_get_profile_data(self, body_of_get_profile_data):
-        """
-        this function returns the dict key to geo
-        :param body_of_get_profile_data: body in json for get profile data function
-        :return: body["geo"]
-        """
-        return body_of_get_profile_data["geo"]

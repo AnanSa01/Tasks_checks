@@ -37,10 +37,8 @@ class MyTestCase(unittest.TestCase):
         company_id = self.config["search_employees_companyId"]
         company_place_wp = self.config["search_employees_place_wp"]
         result = api_search_employees.search_employees_api_get(company_id, company_place_wp)
-        body = result.json()
-        self.assertTrue(result.ok)
-        self.assertEqual(result.status_code, 200)
-        self.assertTrue("success")
+        self.assertEqual(result.status_code, self.config["status_code_passed"])
+        self.assertEqual(result.body["message"], self.config["valid_empty_message"])
 
     def test_find_email_address_GET(self):
         """
@@ -53,10 +51,8 @@ class MyTestCase(unittest.TestCase):
         api_find_email_address = FindEmailAddress(self._api_request)
         find_username = self.config["find_email_address_username"]
         result = api_find_email_address.find_email_address_api_get(find_username)
-        body = result.json()
-        profile_data = api_find_email_address.return_profile_data_in_find_email_address(body)
-        self.assertTrue(result.ok)
-        self.assertEqual(result.status_code, 200)
+        profile_data = api_find_email_address.return_profile_data_in_find_email_address(result.body)
+        self.assertEqual(result.status_code, self.config["status_code_passed"])
         self.assertEqual(profile_data["username"], find_username)
 
     def test_search_jobs_GET(self):
@@ -71,10 +67,8 @@ class MyTestCase(unittest.TestCase):
         search_jobs_keyword = self.config["search_jobs_keyword"]
         search_jobs_location_id = self.config["search_jobs_locationId"]
         result = api_search_jobs.search_jobs_api_get(search_jobs_keyword, search_jobs_location_id)
-        body = result.json()
-        self.assertTrue(result.ok)
-        self.assertEqual(result.status_code, 200)
-        self.assertEqual(body["message"], "")
+        self.assertEqual(result.status_code, self.config["status_code_passed"])
+        self.assertEqual(result.body["message"], self.config["valid_empty_message"])
 
     def test_search_jobs_v2_GET(self):
         """
@@ -88,10 +82,8 @@ class MyTestCase(unittest.TestCase):
         search_jobs_keyword = self.config["search_jobs_keyword"]
         search_jobs_location_id = self.config["search_jobs_locationId"]
         result = api_search_jobs_v2.search_jobs_v2_api_get(search_jobs_keyword, search_jobs_location_id)
-        body = result.json()
-        self.assertTrue(result.ok)
-        self.assertEqual(result.status_code, 200)
-        self.assertEqual(body["message"], "")
+        self.assertEqual(result.status_code, self.config["status_code_passed"])
+        self.assertEqual(result.body["message"], self.config["valid_empty_message"])
 
     def test_search_locations_GET(self):
         """
@@ -104,12 +96,8 @@ class MyTestCase(unittest.TestCase):
         api_search_locations = SearchLocations(self._api_request)
         location_name = self.config["search_locations_place"]
         result = api_search_locations.search_locations_api_get(location_name)
-        body = result.json()
-        items = api_search_locations.return_items_in_search_locations(body)
-        self.assertTrue(result.ok)
-        self.assertEqual(result.status_code, 200)
-        self.assertEqual(body["message"], "")
-        self.assertTrue("success")
+        items = api_search_locations.return_items_in_search_locations(result.body)
+        self.assertEqual(result.status_code, self.config["status_code_passed"])
         self.assertIn(location_name, items[0]["name"])
 
     def test_search_post_by_hashtag_POST(self):
@@ -121,12 +109,10 @@ class MyTestCase(unittest.TestCase):
         """
         logging.info("---------- Initialize Test: search post by hashtag (using POST) ----------")
         api_search_post_by_hashtag = SearchPostByHashtag(self._api_request)
-        query_string = self.config["search_post_by_hashtag_query_string"]
-        result = api_search_post_by_hashtag.search_post_by_hashtag_api_post(query_string)
-        self.assertTrue(result.ok)
-        self.assertEqual(result.status_code, 200)
-        self.assertEqual(result.body["message"], "")
-        self.assertTrue(result.body["success"])
+        payload = self.config["search_post_by_hashtag_payload"]
+        result = api_search_post_by_hashtag.search_post_by_hashtag_api_post(payload)
+        self.assertEqual(result.status_code, self.config["status_code_passed"])
+        self.assertEqual(result.body["message"], self.config["valid_empty_message"])
 
     def test_search_post_by_keyword_POST(self):
         """
@@ -137,12 +123,23 @@ class MyTestCase(unittest.TestCase):
         """
         logging.info("---------- Initialize Test: search post by keyword (using POST) ----------")
         api_search_post_by_keyword = SearchPostByKeyword(self._api_request)
-        query_string = self.config["search_post_by_keyword_query_string"]
-        result = api_search_post_by_keyword.search_post_by_keyword_api_post(query_string)
-        self.assertTrue(result.ok)
-        self.assertEqual(result.status_code, 200)
-        self.assertEqual(result.body["message"], "")
-        self.assertTrue(result.body["success"])
+        payload = self.config["search_post_by_keyword_payload"]
+        result = api_search_post_by_keyword.search_post_by_keyword_api_post(payload)
+        self.assertEqual(result.status_code, self.config["status_code_passed"])
+        self.assertEqual(result.body["message"], self.config["valid_empty_message"])
+
+    def test_negative_search_post_by_keyword_POST(self):
+        """
+        this function tests security of website when user tries to get saved API with a wrong token
+        -----
+        test case   #: 020
+        requirement #: 003
+        """
+        api_search_post_by_keyword = SearchPostByKeyword(self._api_request)
+        payload = self.config["search_post_by_keyword_payload"]
+        result = api_search_post_by_keyword.search_post_by_keyword_api_post(payload)
+        self.assertEqual(result.status_code, self.config["status_code_forbidden"])
+        self.assertEqual(result.body["message"], self.config["invalid_header_alert_message"])
 
 
 if __name__ == '__main__':

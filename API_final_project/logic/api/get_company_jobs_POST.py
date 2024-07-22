@@ -12,14 +12,14 @@ class GetCompanyJobs(BaseInit):
     def __init__(self, request):
         super().__init__(request)
 
-    def get_company_jobs_api_post(self, company_name, query_string):
+    def get_company_jobs_api_post(self, company_name, payload):
         """
         this function returns company jobs using POST
         """
         try:
             response = self._request.post_request(
                 f"{self.config["base_url"]}/company-jobs?username={company_name}",
-                self.config["header"], query_string)
+                self.config["header"], payload)
             return ResponseWrapper(ok=response.ok, status_code=response.status_code, body=response.json())
 
         except RequestException:

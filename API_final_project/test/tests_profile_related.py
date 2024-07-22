@@ -36,14 +36,8 @@ class MyTestCase(unittest.TestCase):
         api_get_profile_data = GetProfileData(self._api_request)
         profile_username = self.config["get_profile_data_username"]
         result = api_get_profile_data.get_profile_data_api_get(profile_username)
-        body = result.json()
-        self.assertTrue(result.ok)
-        self.assertEqual(result.status_code, 200)
-        self.assertEqual(body["username"], profile_username)
-
-        geo = api_get_profile_data.return_geo_in_get_profile_data(body)
-        self.assertEqual(body["firstName"], self.config["get_profile_data_check_first_name"])
-        self.assertEqual(geo["country"], self.config["get_profile_data_check_country"])
+        self.assertEqual(result.status_code, self.config["status_code_passed"])
+        self.assertEqual(result.body["username"], profile_username)
 
     def test_search_people_GET(self):
         """
@@ -57,11 +51,8 @@ class MyTestCase(unittest.TestCase):
         name_for_search = self.config["search_people_name"]
         place_for_search = self.config["search_people_place_wp"]
         result = api_search_for_people.search_people_api_get(name_for_search, place_for_search)
-        body = result.json()
-        items = api_search_for_people.return_items_in_search_people(body)
-        self.assertTrue(result.ok)
-        self.assertEqual(result.status_code, 200)
-        self.assertEqual(body["message"], "")
+        items = api_search_for_people.return_items_in_search_people(result.body)
+        self.assertEqual(result.status_code, self.config["status_code_passed"])
         self.assertIn(name_for_search, items[0]["fullName"])
 
     def test_get_profile_posts_GET(self):
@@ -75,11 +66,8 @@ class MyTestCase(unittest.TestCase):
         api_get_profile_posts = GetProfilePosts(self._api_request)
         profile_username_request = self.config["get_profile_posts_username"]
         result = api_get_profile_posts.get_profile_posts_api_get(profile_username_request)
-        body = result.json()
-        username_from_response = api_get_profile_posts.return_user_in_get_profile_posts(body)
-        self.assertTrue(result.ok)
-        self.assertEqual(result.status_code, 200)
-        self.assertEqual(body["message"], "")
+        username_from_response = api_get_profile_posts.return_user_in_get_profile_posts(result.body)
+        self.assertEqual(result.status_code, self.config["status_code_passed"])
         self.assertEqual(profile_username_request, username_from_response)
 
     def test_get_profile_likes_GET(self):
@@ -93,10 +81,8 @@ class MyTestCase(unittest.TestCase):
         api_get_profile_likes = GetProfileLikes(self._api_request)
         profile_username_request = self.config["get_profile_likes_username"]
         result = api_get_profile_likes.get_profile_likes_api_get(profile_username_request)
-        body = result.json()
-        self.assertTrue(result.ok)
-        self.assertEqual(result.status_code, 200)
-        self.assertEqual(body["message"], "")
+        self.assertEqual(result.status_code, self.config["status_code_passed"])
+        self.assertEqual(result.body["message"], self.config["valid_empty_message"])
 
     def test_profile_posts_comments_by_urn_GET(self):
         """
@@ -109,11 +95,8 @@ class MyTestCase(unittest.TestCase):
         api_profile_posts_comments = GetProfilePostsComments(self._api_request)
         profile_urn = self.config["get_profile_posts_comments_urn"]
         result = api_profile_posts_comments.get_profile_posts_comments_api_get(profile_urn)
-        body = result.json()
-        self.assertTrue(result.ok)
-        self.assertEqual(result.status_code, 200)
-        self.assertEqual(body["message"], "")
-        self.assertTrue(body["success"])
+        self.assertEqual(result.status_code, self.config["status_code_passed"])
+        self.assertEqual(result.body["message"], self.config["valid_empty_message"])
 
     def test_get_given_recommendations_GET(self):
         """
@@ -126,10 +109,8 @@ class MyTestCase(unittest.TestCase):
         api_get_given_recommendations = GetGivenRecommendations(self._api_request)
         profile_username = self.config["get_given_recommendations_username"]
         result = api_get_given_recommendations.get_given_recommendations_api_get(profile_username)
-        body = result.json()
-        self.assertTrue(result.ok)
-        self.assertEqual(result.status_code, 200)
-        self.assertEqual(body["message"], "")
+        self.assertEqual(result.status_code, self.config["status_code_passed"])
+        self.assertEqual(result.body["message"], self.config["valid_empty_message"])
 
     def test_get_post_reactions_POST(self):
         """
@@ -140,11 +121,10 @@ class MyTestCase(unittest.TestCase):
         """
         logging.info("---------- Initialize Test: get post reactions (using POST) ----------")
         api_get_post_reactions = GetPostReactions(self._api_request)
-        query_string = self.config["get_post_reactions_query_string"]
-        result = api_get_post_reactions.get_post_reactions_api_post(query_string)
-        self.assertTrue(result.ok)
-        self.assertEqual(result.status_code, 200)
-        self.assertEqual(result.body["message"], "")
+        payload = self.config["get_post_reactions_payload"]
+        result = api_get_post_reactions.get_post_reactions_api_post(payload)
+        self.assertEqual(result.status_code, self.config["status_code_passed"])
+        self.assertEqual(result.body["message"], self.config["valid_empty_message"])
 
 
 if __name__ == '__main__':

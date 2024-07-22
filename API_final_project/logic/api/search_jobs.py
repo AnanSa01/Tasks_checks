@@ -2,6 +2,7 @@ import logging
 
 from requests import RequestException
 
+from infra.api.response_wrapper import ResponseWrapper
 from infra.logging_basicConfig import LoggingSetup
 
 from logic.api.base_init import BaseInit
@@ -16,9 +17,11 @@ class SearchJobs(BaseInit):
         this function returns search jobs using GET
         """
         try:
-            return self._request.get_request(
+            response = self._request.get_request(
                 f"{self.config["base_url"]}/search-jobs?keywords={search_jobs_keyword}&locationId="
                 f"{search_jobs_location_id}&datePosted=anyTime&sort=mostRelevant", self.config["header"])
+
+            return ResponseWrapper(ok=response.ok, status_code=response.status_code, body=response.json())
 
         except RequestException:
             logging.error("Error in receiving API data from 'search_jobs' function")
@@ -28,9 +31,11 @@ class SearchJobs(BaseInit):
         this function returns search jobs using GET
         """
         try:
-            return self._request.get_request(
+            response = self._request.get_request(
                 f"{self.config["base_url"]}/search-jobs-v2?keywords={search_jobs_keyword}&locationId="
                 f"{search_jobs_location_id}&datePosted=anyTime&sort=mostRelevant", self.config["header"])
+
+            return ResponseWrapper(ok=response.ok, status_code=response.status_code, body=response.json())
 
         except RequestException:
             logging.error("Error in receiving API data from 'get_company_employees_count' function")

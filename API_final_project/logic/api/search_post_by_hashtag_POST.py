@@ -12,13 +12,13 @@ class SearchPostByHashtag(BaseInit):
     def __init__(self, request):
         super().__init__(request)
 
-    def search_post_by_hashtag_api_post(self, query_string):
+    def search_post_by_hashtag_api_post(self, payload):
         """
         this function returns search post by hashtag using POST
         """
         try:
             response = self._request.post_request(f"{self.config["base_url"]}/search-posts-by-hashtag",
-                                                  self.config["header"], query_string)
+                                                  self.config["header"], payload)
             return ResponseWrapper(ok=response.ok, status_code=response.status_code, body=response.json())
 
         except RequestException:

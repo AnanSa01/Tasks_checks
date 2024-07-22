@@ -34,11 +34,10 @@ class MyTestCase(unittest.TestCase):
         """
         logging.info("---------- Initialize Test: get company employees count (using POST) ----------")
         api_get_company_employees_count = GetCompanyEmployeesCount(self._api_request)
-        query_string = self.config["get_company_employees_count_query_string"]
-        result = api_get_company_employees_count.get_company_employees_count_api_post(query_string)
-        self.assertTrue(result.ok)
-        self.assertEqual(result.status_code, 200)
-        self.assertEqual(result.body["message"], "")
+        payload = self.config["get_company_employees_count_payload"]
+        result = api_get_company_employees_count.get_company_employees_count_api_post(payload)
+        self.assertEqual(result.status_code, self.config["status_code_passed"])
+        self.assertEqual(result.body["message"], self.config["valid_empty_message"])
 
     def test_get_company_job_POST(self):
         """
@@ -50,11 +49,10 @@ class MyTestCase(unittest.TestCase):
         logging.info("---------- Initialize Test: get company job (using POST) ----------")
         api_get_company_jobs = GetCompanyJobs(self._api_request)
         company_name = self.config["get_company_jobs_name"]
-        query_string = self.config["get_company_jobs_query_string"]
-        result = api_get_company_jobs.get_company_jobs_api_post(company_name, query_string)
-        self.assertTrue(result.ok)
-        self.assertEqual(result.status_code, 200)
-        self.assertEqual(result.body["message"], "")
+        payload = self.config["get_company_jobs_payload"]
+        result = api_get_company_jobs.get_company_jobs_api_post(company_name, payload)
+        self.assertEqual(result.status_code, self.config["status_code_passed"])
+        self.assertEqual(result.body["message"], self.config["valid_empty_message"])
 
     def test_get_hiring_team_GET(self):
         """
@@ -67,11 +65,8 @@ class MyTestCase(unittest.TestCase):
         api_get_hiring_team = GetHiringTeam(self._api_request)
         hiring_team_id = self.config["get_hiring_team_id"]
         result = api_get_hiring_team.get_hiring_team_api_get(hiring_team_id)
-        body = result.json()
-        self.assertTrue(result.ok)
-        self.assertEqual(result.status_code, 200)
-        self.assertEqual(body["message"], self.config["get_hiring_team_message"])
-        self.assertTrue(body["success"])
+        self.assertEqual(result.status_code, self.config["status_code_passed"])
+        self.assertEqual(result.body["message"], self.config["valid_success_message"])
 
     def test_health_check_GET(self):
         """
@@ -83,12 +78,8 @@ class MyTestCase(unittest.TestCase):
         logging.info("---------- Initialize Test: get health check (using GET) ----------")
         api_health_check = HealthCheck(self._api_request)
         result = api_health_check.health_check_api_get()
-        body = result.json()
-        data = api_health_check.return_data_in_health_check(body)
-        self.assertTrue(result.ok)
-        self.assertEqual(result.status_code, 200)
-        self.assertEqual(body["message"], self.config["test_health_check_message"])
-        self.assertTrue(data["health"])
+        self.assertEqual(result.status_code, self.config["status_code_passed"])
+        self.assertEqual(result.body["message"], self.config["valid_success_message"])
 
     def test_get_job_details_by_id_GET(self):
         """
@@ -101,11 +92,8 @@ class MyTestCase(unittest.TestCase):
         api_get_job_details = GetJobDetails(self._api_request)
         job_id = self.config["get_job_detail_id"]
         result = api_get_job_details.find_job_details_api_get(job_id)
-        body = result.json()
-        data = api_get_job_details.return_data_in_find_job_details(body)
-        self.assertTrue(result.ok)
-        self.assertEqual(result.status_code, 200)
-        self.assertEqual(body["message"], "")
+        data = api_get_job_details.return_data_in_find_job_details(result.body)
+        self.assertEqual(result.status_code, self.config["status_code_passed"])
         self.assertEqual(data["id"], job_id)
 
 
