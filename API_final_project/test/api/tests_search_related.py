@@ -1,7 +1,6 @@
 import unittest
 
 import logging
-from infra.logging_basicConfig import LoggingSetup
 
 from infra.api.api_wrapper import APIWrapper
 from logic.api.find_email_address import FindEmailAddress
@@ -124,7 +123,8 @@ class MyTestCase(unittest.TestCase):
         logging.info("---------- Initialize Test: search post by keyword (using POST) ----------")
         api_search_post_by_keyword = SearchPostByKeyword(self._api_request)
         payload = self.config["search_post_by_keyword_payload"]
-        result = api_search_post_by_keyword.search_post_by_keyword_api_post(payload)
+        valid_header = self.config["header"]
+        result = api_search_post_by_keyword.search_post_by_keyword_api_post(valid_header, payload)
         self.assertEqual(result.status_code, self.config["status_code_passed"])
         self.assertEqual(result.body["message"], self.config["valid_empty_message"])
 
@@ -137,7 +137,8 @@ class MyTestCase(unittest.TestCase):
         """
         api_search_post_by_keyword = SearchPostByKeyword(self._api_request)
         payload = self.config["search_post_by_keyword_payload"]
-        result = api_search_post_by_keyword.search_post_by_keyword_api_post(payload)
+        invalid_header = self.config["invalid_header"]
+        result = api_search_post_by_keyword.search_post_by_keyword_api_post(invalid_header, payload)
         self.assertEqual(result.status_code, self.config["status_code_forbidden"])
         self.assertEqual(result.body["message"], self.config["invalid_header_alert_message"])
 
