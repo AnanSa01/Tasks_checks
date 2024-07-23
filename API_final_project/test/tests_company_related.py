@@ -1,9 +1,8 @@
-import time
 import unittest
 
 import logging
-from infra.logging_basicConfig import LoggingSetup
 
+from infra.logging_basicConfig import LoggingSetup
 from infra.api.api_wrapper import APIWrapper
 from logic.api.get_company_employees_count_POST import GetCompanyEmployeesCount
 from logic.api.get_company_jobs_POST import GetCompanyJobs
@@ -23,7 +22,7 @@ class MyTestCase(unittest.TestCase):
         self.config = LoadConfig.return_file()
 
     def tearDown(self):
-        logging.info(f'---------- End of test.\n')
+        logging.info(f'End of test.\n')
 
     def test_get_company_employees_count_POST(self):
         """

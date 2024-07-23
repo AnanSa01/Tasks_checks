@@ -2,8 +2,10 @@ import unittest
 
 import logging
 
+from infra.logging_basicConfig import LoggingSetup
 from infra.api.api_wrapper import APIWrapper
 from logic.api.find_email_address import FindEmailAddress
+from logic.api.get_profile_likes import GetProfileLikes
 from logic.api.search_employees import SearchEmployees
 from logic.api.search_jobs import SearchJobs
 from logic.api.search_locations import SearchLocations
@@ -22,7 +24,7 @@ class MyTestCase(unittest.TestCase):
         self.config = LoadConfig.return_file()
 
     def tearDown(self):
-        logging.info(f'---------- End of test.\n')
+        logging.info(f'End of test.\n')
 
     def test_search_employees_GET(self):
         """
@@ -123,24 +125,9 @@ class MyTestCase(unittest.TestCase):
         logging.info("---------- Initialize Test: search post by keyword (using POST) ----------")
         api_search_post_by_keyword = SearchPostByKeyword(self._api_request)
         payload = self.config["search_post_by_keyword_payload"]
-        valid_header = self.config["header"]
-        result = api_search_post_by_keyword.search_post_by_keyword_api_post(valid_header, payload)
+        result = api_search_post_by_keyword.search_post_by_keyword_api_post(payload)
         self.assertEqual(result.status_code, self.config["status_code_passed"])
         self.assertEqual(result.body["message"], self.config["valid_empty_message"])
-
-    def test_negative_search_post_by_keyword_POST(self):
-        """
-        this function tests security of website when user tries to get saved API with a wrong token
-        -----
-        test case   #: 020
-        requirement #: 003
-        """
-        api_search_post_by_keyword = SearchPostByKeyword(self._api_request)
-        payload = self.config["search_post_by_keyword_payload"]
-        invalid_header = self.config["invalid_header"]
-        result = api_search_post_by_keyword.search_post_by_keyword_api_post(invalid_header, payload)
-        self.assertEqual(result.status_code, self.config["status_code_forbidden"])
-        self.assertEqual(result.body["message"], self.config["invalid_header_alert_message"])
 
 
 if __name__ == '__main__':

@@ -1,8 +1,8 @@
 import unittest
 
 import logging
-from infra.logging_basicConfig import LoggingSetup
 
+from infra.logging_basicConfig import LoggingSetup
 from infra.api.api_wrapper import APIWrapper
 from logic.api.get_given_recommendations import GetGivenRecommendations
 from logic.api.get_post_reactions_POST import GetPostReactions
@@ -23,7 +23,7 @@ class MyTestCase(unittest.TestCase):
         self.config = LoadConfig.return_file()
 
     def tearDown(self):
-        logging.info(f'---------- End of test.\n')
+        logging.info(f'End of test.\n')
 
     def test_get_profile_data_GET(self):
         """

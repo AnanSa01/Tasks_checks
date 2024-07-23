@@ -2,9 +2,8 @@ import logging
 
 from requests import RequestException
 
-from infra.api.response_wrapper import ResponseWrapper
 from infra.logging_basicConfig import LoggingSetup
-
+from infra.api.response_wrapper import ResponseWrapper
 from logic.api.base_init import BaseInit
 
 
@@ -17,10 +16,8 @@ class GetJobDetails(BaseInit):
         this function returns job details using GET
         """
         try:
-            response = self._request.get_request(
-                f"{self.config["base_url"]}/get-job-details?id={job_id}", self.config["header"])
-
-            return ResponseWrapper(ok=response.ok, status_code=response.status_code, body=response.json())
+            return self._request.get_request(f"{self.config["base_url"]}/get-job-details?id={job_id}",
+                                                    self.config["header"])
 
         except RequestException:
             logging.error("Error in receiving API data from 'find_job_details' function")

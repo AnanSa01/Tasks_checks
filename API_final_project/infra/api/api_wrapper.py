@@ -13,16 +13,10 @@ class APIWrapper:
 
     @staticmethod
     def get_request(url, headers=None, body=None):
-        return requests.get(url, headers=headers, json=body)
+        response = requests.get(url, headers=headers, json=body)
+        return ResponseWrapper(ok=response.ok, status_code=response.status_code, body=response.json())
 
     @staticmethod
     def post_request(url, headers=None, body=None):
-        return requests.post(url, headers=headers, json=body)
-
-    @staticmethod
-    def put_request(url, headers=None, body=None):
-        return requests.put(url, headers=headers, json=body)
-
-    @staticmethod
-    def delete_request(url, headers=None, body=None):
-        return requests.delete(url, headers=headers, json=body)
+        response = requests.post(url, headers=headers, json=body)
+        return ResponseWrapper(ok=response.ok, status_code=response.status_code, body=response.json())

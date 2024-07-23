@@ -2,9 +2,8 @@ import logging
 
 from requests import RequestException
 
-from infra.api.response_wrapper import ResponseWrapper
 from infra.logging_basicConfig import LoggingSetup
-
+from infra.api.response_wrapper import ResponseWrapper
 from logic.api.base_init import BaseInit
 
 
@@ -17,10 +16,8 @@ class GetPostReactions(BaseInit):
         this function returns post reactions using POST
         """
         try:
-            response = self._request.post_request(f"{self.config["base_url"]}/get-post-reactions",
-                                                  self.config["header"], payload)
-
-            return ResponseWrapper(ok=response.ok, status_code=response.status_code, body=response.json())
+            return self._request.post_request(f"{self.config["base_url"]}/get-post-reactions",
+                                                     self.config["header"], payload)
 
         except RequestException:
             logging.error("Error in receiving API data from 'get_post_reactions' function")
