@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>pets</title>
+</head>
+<body>
+    <h1>PETS</h1>
+    <ul>
+        {% for pet in pets %}
+            <li>
+                <strong>Identification Number:</strong> {{ pet['Identification Number'] }},
+                <strong>Pet Name:</strong> {{ pet['Pet Name'] }},
+                <strong>Species:</strong> {{ pet['Species'] }},
+                <strong>Age:</strong> {{ pet['Age'] }},
+                <strong>Vaccinated:</strong> {{ pet['Vaccinated'] }},
+                <strong>Owner Name:</strong> {{ pet['Owner Name'] }},
+                <strong>Owner Phone Number:</strong> {{ pet['Owner Phone Number'] }},
+                <strong>Breed:</strong> {{ pet['Age'] }},
+                <strong>Indoor:</strong> {{ pet['Indoor'] }}.
+                <br><br>
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="/">Go back to home</a><br>
+
+</body>
+</html>

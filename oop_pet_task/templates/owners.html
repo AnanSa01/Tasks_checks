@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>owners</title>
+</head>
+<body>
+    <h1>OWNERS</h1>
+    <ul>
+        {% for owner in owners %}
+            <li>
+                <strong>Owner Name:</strong> {{ owner['Owner Name'] }},
+                <strong>Owner Phone Number:</strong> {{ owner['Owner Phone Number'] }},
+                <strong>Number Of Pets Owned:</strong> {{ owner['Number Of Pets Owned'] }},
+                <br><strong>All Pets Details For Owner =</strong><br>
+                {% for pet in owner['Pets Details'] %}
+                <strong>     Pet I.D.:</strong> {{ pet['Pet I.D.'] }},
+                <strong>     Pet Species:</strong> {{ pet['Pet Species'] }},
+                <strong>     Pet Name:</strong> {{ pet['Pet Name'] }}
+                <br>
+                {% endfor %}
+                <br><br>
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="/">Go back to home</a><br>
+
+</body>
+</html>
