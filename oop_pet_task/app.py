@@ -56,8 +56,8 @@ def add_pet():
         MemoryProvider.save_data_pets(Utilities.pets_return_in_json(new_pet))
 
         return redirect(url_for('pets'))
-
-    return render_template("add_pet.html")
+    pets_species = ['Rabbit', 'Bird', 'Cat', 'Dog', 'Rat', 'Horse', 'Tortoise', 'Duck', 'Snake']
+    return render_template("add_pet.html", pets_species=pets_species)
 
 
 @app.route("/services")

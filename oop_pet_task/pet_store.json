@@ -87,6 +87,28 @@
          "Owner Phone Number": "88888",
          "Breed": null,
          "Indoor": null
+      },
+      {
+         "Identification Number": 9,
+         "Pet Name": "aaaa",
+         "Species": "",
+         "Age": "3333",
+         "Vaccinated": "on",
+         "Owner Name": "sss",
+         "Owner Phone Number": "2222",
+         "Breed": null,
+         "Indoor": null
+      },
+      {
+         "Identification Number": 10,
+         "Pet Name": "aaaa",
+         "Species": "Bird",
+         "Age": "333",
+         "Vaccinated": "on",
+         "Owner Name": "222",
+         "Owner Phone Number": "444",
+         "Breed": null,
+         "Indoor": null
       }
    ],
    "data_for_owners": [
@@ -198,6 +220,30 @@
                "Pet I.D.": null,
                "Pet Species": null,
                "Pet Name": null
+            }
+         ]
+      },
+      {
+         "Owner Name": "sss",
+         "Owner Phone Number": "2222",
+         "Number Of Pets Owned": 1,
+         "Pets Details": [
+            {
+               "Pet I.D.": 9,
+               "Pet Species": "",
+               "Pet Name": "aaaa"
+            }
+         ]
+      },
+      {
+         "Owner Name": "222",
+         "Owner Phone Number": "444",
+         "Number Of Pets Owned": 1,
+         "Pets Details": [
+            {
+               "Pet I.D.": 10,
+               "Pet Species": "Bird",
+               "Pet Name": "aaaa"
             }
          ]
       }
