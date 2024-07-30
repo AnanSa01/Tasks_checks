@@ -21,7 +21,8 @@ class Pet(Owner):
         return self._vaccinated
 
     def set_pet_as_vaccinated(self):
-        self._vaccinated = True
+        if not self._vaccinated:
+            self._vaccinated = True
 
     @staticmethod
     def total_pets_count():

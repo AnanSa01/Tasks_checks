@@ -25,7 +25,7 @@ class Utilities:
         }
 
     @staticmethod
-    def owners_return_in_json(owner_name, owner_phone_number, _pet_id, pet_species, pet_name, number_of_pets=1):
+    def owners_return_in_json(owner_name, owner_phone_number, _pet_id=None, pet_species=None, pet_name=None, number_of_pets=1):
 
         return {
             "Owner Name": owner_name,
