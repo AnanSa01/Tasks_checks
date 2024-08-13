@@ -1,7 +1,7 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver import ActionChains
 
-from infra.base_page import BasePage
+from Selenium_herokuapp_task.infra.base_page import BasePage
 
 
 class ContextMenuPage(BasePage):

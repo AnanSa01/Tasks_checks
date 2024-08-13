@@ -1,7 +1,7 @@
-from infra.base_page import BasePage
+from Selenium_herokuapp_task.infra.base_page import BasePage
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from infra.browser_wrapper import BrowserWrapper
+from Selenium_herokuapp_task.infra.browser_wrapper import BrowserWrapper
 
 
 class HomePage(BasePage):

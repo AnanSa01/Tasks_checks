@@ -1,5 +1,5 @@
 from selenium import webdriver
-from infra.config_provider import ConfigProvider
+from Selenium_herokuapp_task.infra.config_provider import ConfigProvider
 
 
 class BrowserWrapper:
